@@ -180,7 +180,7 @@ export default function GiveawayPage() {
               </div>
 
               <p className="text-[10px] text-[#b0aba5] leading-relaxed -mt-2">
-                By clicking Submit, you consent to innerme collecting and using your personal data to contact you, and related updates in accordance with the PDPA.
+                By clicking Submit, you consent to InnerMe collecting and using your personal data to contact you, and related updates in accordance with the PDPA.
               </p>
 
               <button

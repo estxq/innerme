@@ -1262,7 +1262,7 @@ function CouplesQuiz() {
                   </svg>
                 </button>
                 <p className="mt-6 text-[10px] text-[#c0bbb5] leading-relaxed max-w-xs">
-                  By clicking Submit, you consent to innerme collecting and using your personal data to contact you, and related updates in accordance with the PDPA.
+                  By clicking Submit, you consent to InnerMe collecting and using your personal data to contact you, and related updates in accordance with the PDPA.
                 </p>
               </form>
             </motion.div>
