@@ -134,7 +134,7 @@ export default function GiveawayPage() {
   }
 
   return (
-    <div className="min-h-[calc(100dvh-57px)] bg-[#FAF8F5] flex flex-col items-center justify-center px-6 py-20"
+    <div className="min-h-[calc(100dvh-57px)] bg-[#FAF8F5] flex flex-col items-center justify-center px-6 py-8"
       style={{ fontFamily: "'Inter', sans-serif" }}>
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap');`}</style>
 
