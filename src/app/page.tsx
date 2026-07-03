@@ -1,65 +1,47 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const pages = [
+  { href: "/quiz", label: "01", title: "Finance Personality Quiz", desc: "Discover your money mindset in 10 questions." },
+  { href: "/couples", label: "02", title: "Couples Compatibility Test", desc: "See how you and your partner align financially." },
+  { href: "/lucky-draw", label: "03", title: "Lucky Draw", desc: "Enter for a chance to win exciting prizes." },
+  { href: "/giveaway", label: "04", title: "Giveaway", desc: "Participate in our latest giveaway." },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className="min-h-[calc(100dvh-57px)] bg-[#FAF8F5] flex flex-col justify-between px-6 py-16 max-w-5xl mx-auto"
+      style={{ fontFamily: "'Inter', sans-serif" }}>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap');`}</style>
+
+      <div>
+        <p className="text-xs tracking-[0.25em] text-[#9a9490] uppercase mb-8">Welcome</p>
+        <h1 className="text-[clamp(2.5rem,7vw,5rem)] leading-[1.1] text-[#0f172a] mb-6 max-w-2xl"
+          style={{ fontFamily: "'Playfair Display', serif", fontWeight: 400 }}>
+          Understand your<br /><em>relationship with money.</em>
+        </h1>
+        <p className="text-[#9a9490] font-light text-base max-w-sm leading-relaxed">
+          A suite of tools designed to help you discover, reflect, and grow financially.
+        </p>
+      </div>
+
+      <div className="border-t border-[#e8e4df] mt-16">
+        {pages.map((p, i) => (
+          <Link key={p.href} href={p.href}
+            className="flex items-center justify-between py-6 border-b border-[#e8e4df] group hover:pl-2 transition-all duration-300">
+            <div className="flex items-center gap-8">
+              <span className="text-[10px] tracking-[0.2em] text-[#c0bbb5] w-5">{p.label}</span>
+              <div>
+                <h2 className="text-base text-[#0f172a] font-light group-hover:text-[#c8a96e] transition-colors duration-300"
+                  style={{ fontFamily: "'Playfair Display', serif" }}>{p.title}</h2>
+                <p className="text-xs text-[#9a9490] font-light mt-0.5">{p.desc}</p>
+              </div>
+            </div>
+            <svg className="w-4 h-4 text-[#c0bbb5] group-hover:text-[#0f172a] group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 16 16">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
