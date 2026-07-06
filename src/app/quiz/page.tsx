@@ -151,7 +151,7 @@ const personalities: Record<PersonalityKey, {
     strengths: ["Aware there's room to improve", "Emotionally driven", "Open to guidance", "Wants stability deep down"],
     blindspots: ["Avoiding planning creates future stress", "Delaying decisions can become expensive", "Often reactive instead of proactive"],
     nextLevel: ["Build simple systems", "Improve financial confidence", "Start with small consistent actions"],
-    figurineSrc: "/Avoider.png",
+    figurineSrc: "/avoider.png",
   },
   architect: {
     name: "The Financial Architect", subtitle: "You don't just earn money — you design your future.",
@@ -403,22 +403,22 @@ export default function QuizPage() {
                 <h2 className="serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.1] text-[#0f172a] mb-3">
                   {p.name}
                 </h2>
-                <p className="text-[#9a9490] text-base font-light italic leading-relaxed max-w-md mb-6">
+                <p className="text-[#9a9490] text-base font-light italic leading-relaxed max-w-md mb-0">
                   {p.subtitle}
                 </p>
-                <img src={p.figurineSrc} alt={p.name} className="h-48 object-contain object-bottom" style={{ mixBlendMode: "multiply" }} />
+                <img src={p.figurineSrc} alt={p.name} className="w-60 -mb-4" style={{ mixBlendMode: "multiply", display: "block" }} />
               </div>
 
-              <div className="border-t border-[#e8e4df] pt-8 mb-10">
-                <p className="text-[#4a4540] font-light text-base leading-relaxed max-w-lg">
+              <div className="border-t border-[#e8e4df] pt-8 mb-4">
+                <p className="text-[#4a4540] font-light text-base leading-relaxed">
                   {p.desc}
                 </p>
               </div>
 
               {/* Traits - blurred teaser */}
-              <div className="relative mb-10 overflow-hidden">
+              <div className="relative mb-4 border border-[#e8e4df] overflow-hidden">
                 {/* Visible first row */}
-                <div className="grid grid-cols-3 gap-6 pointer-events-none select-none">
+                <div className="grid grid-cols-3 gap-6 p-6 pointer-events-none select-none">
                   {[
                     { label: "Strengths", items: p.strengths },
                     { label: "Blind spots", items: p.blindspots },
@@ -427,13 +427,13 @@ export default function QuizPage() {
                     <div key={col.label}>
                       <p className="text-[10px] tracking-[0.2em] uppercase text-[#9a9490] mb-3">{col.label}</p>
                       {col.items.map((item, i) => (
-                        <p key={item} className={`text-xs text-[#4a4540] font-light mb-2 leading-snug ${i >= 1 ? "blur-sm" : ""}`}>{item}</p>
+                        <p key={item} className={`text-xs text-[#4a4540] font-light mb-2 leading-snug ${i >= 1 ? "blur-sm select-none" : ""}`}>{item}</p>
                       ))}
                     </div>
                   ))}
                 </div>
                 {/* Gradient fade + message */}
-                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#FAF8F5] via-[#FAF8F5]/80 to-transparent flex items-end justify-center pb-2">
+                <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#FAF8F5] via-[#FAF8F5]/90 to-transparent flex items-end justify-center pb-4">
                   <div className="text-center">
                     <p className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase mb-1">Full report</p>
                     <p className="serif text-base text-[#0f172a] leading-snug">Our specialist will reach out<br />with your detailed breakdown.</p>
@@ -441,7 +441,7 @@ export default function QuizPage() {
                 </div>
               </div>
 
-              <p className="text-xs text-[#c0bbb5] leading-relaxed max-w-md">
+              <p className="text-xs text-[#c0bbb5] leading-relaxed">
                 Your financial personality is not who you are forever. It&apos;s a starting point to help you grow, improve and build the life you want.
               </p>
 

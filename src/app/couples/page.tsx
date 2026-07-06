@@ -192,10 +192,10 @@ const letterToType: Record<string, PersonalityType> = { A: "planner", B: "indepe
 // ─── Figurines — PNG images from /public ───────────────────────────────────
 
 const FIGURINE_SRCS: Record<PersonalityType, Record<GenderType, string>> = {
-  planner:     { male: "/planner-male.png",   female: "/planner-female.png" },
-  independent: { male: "/indep-male.png",     female: "/indep-female.png" },
-  balancer:    { male: "/balancer-male.png",  female: "/balancer-female.png" },
-  drifter:     { male: "/drifter-male.png",   female: "/drifter-female.png" },
+  planner:     { male: "/planner-male.png",   female: "/planner-f.png" },
+  independent: { male: "/indep-male.png",     female: "/indep-f.png" },
+  balancer:    { male: "/balancer-m.png",     female: "/balancer-f.png" },
+  drifter:     { male: "/drifter-m.png",      female: "/drifter-f.png" },
 };
 
 const Figurines: Record<PersonalityType, Record<GenderType, () => JSX.Element>> = {
@@ -330,20 +330,20 @@ function getPersonality(answers: Record<number, string>): PersonalityType {
   return letterToType[best];
 }
 
-function encodeData(answers: Record<number, string>, name: string, gender: string, ageRange: string): string {
+function encodeData(answers: Record<number, string>, name: string, gender: string, ageRange: string, phone: string): string {
   const arr = Array.from({ length: 10 }, (_, i) => answers[i] || "");
-  return btoa(unescape(encodeURIComponent(arr.join(",") + "|" + name + "|" + gender + "|" + ageRange)));
+  return btoa(unescape(encodeURIComponent(arr.join(",") + "|" + name + "|" + gender + "|" + ageRange + "|" + phone)));
 }
 
-function decodeData(encoded: string): { answers: Record<number, string>; name: string; gender: GenderType; ageRange: string } {
+function decodeData(encoded: string): { answers: Record<number, string>; name: string; gender: GenderType; ageRange: string; phone: string } {
   try {
     const raw = decodeURIComponent(escape(atob(encoded)));
     const parts = raw.split("|");
     const answers: Record<number, string> = {};
     parts[0].split(",").forEach((v, i) => { if (v) answers[i] = v; });
     const g = parts[2] === "female" ? "female" : "male";
-    return { answers, name: parts[1] || "", gender: g, ageRange: parts[3] || "" };
-  } catch { return { answers: {}, name: "", gender: "male", ageRange: "" }; }
+    return { answers, name: parts[1] || "", gender: g, ageRange: parts[3] || "", phone: parts[4] || "" };
+  } catch { return { answers: {}, name: "", gender: "male", ageRange: "", phone: "" }; }
 }
 
 const slideVariants = {
@@ -403,14 +403,10 @@ function CouplesQuiz() {
     if (!name.trim() || !phone.trim()) return;
 
     if (!isPartnerB) {
-      const encoded = encodeData(answers, name, gender, ageRange);
+      const phoneFormatted = `${countryCode.replace(/^\+/, "")} ${phone}`;
+      const encoded = encodeData(answers, name, gender, ageRange, phoneFormatted);
       const url = `${window.location.origin}/couples?p=${encoded}`;
       setShareUrl(url);
-      fetch("https://script.google.com/macros/s/AKfycbyaBDJ8He8DH-jDQl0kDFa3sNYmYJ8_gFj2MA-ZDmh0sg9VvlehpP4Ti7LZpksq1lOR5w/exec", {
-        method: "POST", mode: "no-cors",
-        headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({ name, phone: `${countryCode.replace(/^\+/, "")} ${phone}`, gender, ageRange, source: "couples", role: "partner-a" }),
-      }).catch(() => {});
       setStage("share");
     } else {
       const typeA = getPersonality(partnerAData!.answers);
@@ -421,8 +417,10 @@ function CouplesQuiz() {
         method: "POST", mode: "no-cors",
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify({
-          name: `${partnerAData!.name} & ${name}`,
-          phone: `${partnerAData!.name}: (Partner A) | ${name}: ${countryCode.replace(/^\+/, "")} ${phone}`,
+          nameA: partnerAData!.name,
+          phoneA: partnerAData!.phone,
+          nameB: name,
+          phoneB: `${countryCode.replace(/^\+/, "")} ${phone}`,
           result: pairing.name,
           source: "couples",
         }),
@@ -652,7 +650,7 @@ function CouplesQuiz() {
           {stage === "result" && result && (
             <motion.div key="result" variants={slideVariants} initial="enter" animate="center" exit="exit"
               className="max-w-2xl w-full">
-              <p className="text-xs tracking-[0.25em] text-[#c8a96e] uppercase mb-6">Your Compatibility Result</p>
+              <p className="text-xs tracking-[0.25em] text-[#c8a96e] uppercase mb-1">Your Compatibility Result</p>
 
               <div className="mb-10">
                 <div className="flex items-end gap-2 mb-2">
@@ -695,15 +693,38 @@ function CouplesQuiz() {
               </div>
 
               <div className="border-t border-[#e8e4df] pt-8 mb-6">
-                <p className="text-[#4a4540] font-light text-base leading-relaxed max-w-lg">{result.pairing.desc}</p>
+                <p className="text-[#4a4540] font-light text-base leading-relaxed">{result.pairing.desc}</p>
               </div>
 
-              <div className="border-l-2 border-[#c8a96e] pl-5 mb-10">
+              <div className="border-l-2 border-[#c8a96e] pl-5 mb-6">
                 <p className="text-[10px] tracking-[0.2em] text-[#c8a96e] uppercase mb-2">Our tip</p>
                 <p className="text-sm text-[#4a4540] font-light leading-relaxed">{result.pairing.tip}</p>
               </div>
 
-              <p className="text-xs text-[#c0bbb5] leading-relaxed max-w-md">
+              {/* Blurred full report teaser */}
+              <div className="relative mb-4 border border-[#e8e4df] overflow-hidden">
+                <div className="grid grid-cols-2 gap-6 p-6 pb-20 pointer-events-none select-none">
+                  {[
+                    { label: "Your strengths as a couple", items: ["Open communication", "Mutual respect", "Shared values"] },
+                    { label: "Areas to work on", items: ["Aligning financial goals", "Building shared systems", "Long-term planning together"] },
+                  ].map(col => (
+                    <div key={col.label}>
+                      <p className="text-[10px] tracking-[0.2em] uppercase text-[#9a9490] mb-3">{col.label}</p>
+                      {col.items.map((item, i) => (
+                        <p key={item} className={`text-xs text-[#4a4540] font-light mb-2 leading-snug ${i >= 1 ? "blur-sm" : ""}`}>{item}</p>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#FAF8F5] via-[#FAF8F5]/90 to-transparent flex items-end justify-center pb-4">
+                  <div className="text-center">
+                    <p className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase mb-1">Full report</p>
+                    <p className="serif text-base text-[#0f172a] leading-snug">Our specialist will reach out<br />with your detailed breakdown.</p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-xs text-[#c0bbb5] leading-relaxed">
                 Compatibility isn&apos;t fixed. It&apos;s built through honest conversations and small, consistent actions together.
               </p>
             </motion.div>
