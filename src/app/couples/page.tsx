@@ -200,20 +200,20 @@ const FIGURINE_SRCS: Record<PersonalityType, Record<GenderType, string>> = {
 
 const Figurines: Record<PersonalityType, Record<GenderType, () => JSX.Element>> = {
   planner: {
-    male:   () => <img src={FIGURINE_SRCS.planner.male}   alt="The Planner"     className="w-full h-full object-contain object-bottom" />,
-    female: () => <img src={FIGURINE_SRCS.planner.female} alt="The Planner"     className="w-full h-full object-contain object-bottom" />,
+    male:   () => <img src={FIGURINE_SRCS.planner.male}   alt="The Planner"     className="w-full h-full object-contain object-bottom" style={{ mixBlendMode: "multiply" }} />,
+    female: () => <img src={FIGURINE_SRCS.planner.female} alt="The Planner"     className="w-full h-full object-contain object-bottom" style={{ mixBlendMode: "multiply" }} />,
   },
   independent: {
-    male:   () => <img src={FIGURINE_SRCS.independent.male}   alt="The Independent" className="w-full h-full object-contain object-bottom" />,
-    female: () => <img src={FIGURINE_SRCS.independent.female} alt="The Independent" className="w-full h-full object-contain object-bottom" />,
+    male:   () => <img src={FIGURINE_SRCS.independent.male}   alt="The Independent" className="w-full h-full object-contain object-bottom" style={{ mixBlendMode: "multiply" }} />,
+    female: () => <img src={FIGURINE_SRCS.independent.female} alt="The Independent" className="w-full h-full object-contain object-bottom" style={{ mixBlendMode: "multiply" }} />,
   },
   balancer: {
-    male:   () => <img src={FIGURINE_SRCS.balancer.male}   alt="The Balancer"   className="w-full h-full object-contain object-bottom" />,
-    female: () => <img src={FIGURINE_SRCS.balancer.female} alt="The Balancer"   className="w-full h-full object-contain object-bottom" />,
+    male:   () => <img src={FIGURINE_SRCS.balancer.male}   alt="The Balancer"   className="w-full h-full object-contain object-bottom" style={{ mixBlendMode: "multiply" }} />,
+    female: () => <img src={FIGURINE_SRCS.balancer.female} alt="The Balancer"   className="w-full h-full object-contain object-bottom" style={{ mixBlendMode: "multiply" }} />,
   },
   drifter: {
-    male:   () => <img src={FIGURINE_SRCS.drifter.male}   alt="The Drifter"    className="w-full h-full object-contain object-bottom" />,
-    female: () => <img src={FIGURINE_SRCS.drifter.female} alt="The Drifter"    className="w-full h-full object-contain object-bottom" />,
+    male:   () => <img src={FIGURINE_SRCS.drifter.male}   alt="The Drifter"    className="w-full h-full object-contain object-bottom" style={{ mixBlendMode: "multiply" }} />,
+    female: () => <img src={FIGURINE_SRCS.drifter.female} alt="The Drifter"    className="w-full h-full object-contain object-bottom" style={{ mixBlendMode: "multiply" }} />,
   },
 };
 
