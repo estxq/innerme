@@ -41,9 +41,9 @@ export default function Home() {
       {/* Intro overlay */}
       {intro && (
         <div className={`fixed inset-0 z-50 bg-[#FAF8F5] flex items-center justify-center ${fadeOut ? "intro-fade-out" : ""}`}>
-          <p className="text-[clamp(2rem,8vw,5rem)] text-[#0f172a] tracking-[0.08em]"
+          <p className="text-[clamp(1.2rem,4vw,2rem)] text-[#0f172a] tracking-[0.08em] uppercase"
             style={{ fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>
-            <span className="intro-word">inner</span><span className="intro-word-2 serif italic font-normal">me</span>
+            <span className="intro-word">INNER</span><span className="intro-word-2" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontWeight: 400, textTransform: "none" }}>ME</span>
           </p>
         </div>
       )}
