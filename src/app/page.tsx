@@ -51,14 +51,10 @@ export default function Home() {
       {/* Hero */}
       <section className="relative min-h-[calc(100dvh-57px)] flex flex-col items-center justify-center px-8 md:px-16 overflow-hidden text-center">
 
-        {/* Decorative background elements */}
+        {/* Background image */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full border border-[#e8e4df] opacity-60"/>
-          <div className="absolute -top-16 -right-16 w-[400px] h-[400px] rounded-full border border-[#e8e4df] opacity-40"/>
-          <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-[#c8a96e]/20 to-transparent"/>
-          <p className="absolute bottom-12 right-8 md:right-16 serif text-[clamp(8rem,20vw,18rem)] leading-none text-[#0f172a] opacity-[0.03] select-none font-medium italic">
-            im
-          </p>
+          <img src="/magicpattern-oPH_5xuMgQw-unsplash.jpg" alt="" className="w-full h-full object-cover"/>
+          <div className="absolute inset-0 bg-[#FAF8F5]/70"/>
         </div>
 
         <div className="relative max-w-3xl">
