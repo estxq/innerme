@@ -151,7 +151,7 @@ const personalities: Record<PersonalityKey, {
     strengths: ["Aware there's room to improve", "Emotionally driven", "Open to guidance", "Wants stability deep down"],
     blindspots: ["Avoiding planning creates future stress", "Delaying decisions can become expensive", "Often reactive instead of proactive"],
     nextLevel: ["Build simple systems", "Improve financial confidence", "Start with small consistent actions"],
-    figurineSrc: "/avoider.png",
+    figurineSrc: "/Avoider.png",
   },
   architect: {
     name: "The Financial Architect", subtitle: "You don't just earn money — you design your future.",
@@ -193,7 +193,7 @@ export default function QuizPage() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [countryCode, setCountryCode] = useState("+65");
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
   const [result, setResult] = useState<PersonalityKey | null>(null);
   const [direction, setDirection] = useState(1);
   const [showAdmin, setShowAdmin] = useState(false);
@@ -229,10 +229,23 @@ export default function QuizPage() {
     }, 420);
   }
 
+  function validatePhone(code: string, num: string): string {
+    const digits = num.replace(/\D/g, "");
+    if (!digits) return "Please enter your phone number.";
+    if (code === "+65") {
+      if (!/^[89]\d{7}$/.test(digits)) return "Enter a valid 8-digit SG number starting with 8 or 9.";
+    } else {
+      if (digits.length < 7 || digits.length > 12) return "Enter a valid phone number.";
+    }
+    return "";
+  }
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!name.trim() || !phone.trim()) { setError(true); return; }
-    setError(false);
+    if (!name.trim()) { setError("Please enter your name."); return; }
+    const phoneErr = validatePhone(countryCode, phone);
+    if (phoneErr) { setError(phoneErr); return; }
+    setError("");
 
     const { counts, score, tier } = getResult(answers);
     const p = personalities[tier];
@@ -378,7 +391,7 @@ export default function QuizPage() {
                       className="bg-transparent text-[#0f172a] text-sm font-light placeholder:text-[#c0bbb5] focus:outline-none flex-1 min-w-0" />
                   </div>
                 </div>
-                {error && <p className="text-red-400 text-xs mt-2 font-light">Please fill in both fields.</p>}
+                {error && <p className="text-red-400 text-xs mt-2 font-light">{error}</p>}
                 <button type="submit"
                   className="mt-8 inline-flex items-center gap-3 bg-[#0f172a] text-[#FAF8F5] px-8 py-4 text-sm tracking-[0.12em] uppercase hover:bg-[#1e293b] transition-colors duration-300 cursor-pointer self-start">
                   Reveal My Personality
@@ -403,7 +416,7 @@ export default function QuizPage() {
                 <h2 className="serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.1] text-[#0f172a] mb-3">
                   {p.name}
                 </h2>
-                <p className="text-[#9a9490] text-base font-light italic leading-relaxed max-w-md mb-0">
+                <p className="text-[#9a9490] text-base font-light italic leading-relaxed max-w-md mb-6">
                   {p.subtitle}
                 </p>
                 <img src={p.figurineSrc} alt={p.name} className="w-60 -mb-4" style={{ mixBlendMode: "multiply", display: "block" }} />
@@ -418,7 +431,7 @@ export default function QuizPage() {
               {/* Traits - blurred teaser */}
               <div className="relative mb-4 border border-[#e8e4df] overflow-hidden">
                 {/* Visible first row */}
-                <div className="grid grid-cols-3 gap-6 p-6 pointer-events-none select-none">
+                <div className="grid grid-cols-3 gap-6 p-6 pb-20 pointer-events-none select-none">
                   {[
                     { label: "Strengths", items: p.strengths },
                     { label: "Blind spots", items: p.blindspots },
@@ -433,9 +446,9 @@ export default function QuizPage() {
                   ))}
                 </div>
                 {/* Gradient fade + message */}
-                <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#FAF8F5] via-[#FAF8F5]/90 to-transparent flex items-end justify-center pb-4">
+                <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#FAF8F5] via-[#FAF8F5]/90 to-transparent flex items-end justify-center pb-6">
                   <div className="text-center">
-                    <p className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase mb-1">Full report</p>
+                    <p className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase mb-2">Full report</p>
                     <p className="serif text-base text-[#0f172a] leading-snug">Our specialist will reach out<br />with your detailed breakdown.</p>
                   </div>
                 </div>

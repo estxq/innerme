@@ -192,10 +192,10 @@ const letterToType: Record<string, PersonalityType> = { A: "planner", B: "indepe
 // ─── Figurines — PNG images from /public ───────────────────────────────────
 
 const FIGURINE_SRCS: Record<PersonalityType, Record<GenderType, string>> = {
-  planner:     { male: "/planner-male.png",   female: "/planner-f.png" },
-  independent: { male: "/indep-male.png",     female: "/indep-f.png" },
-  balancer:    { male: "/balancer-m.png",     female: "/balancer-f.png" },
-  drifter:     { male: "/drifter-m.png",      female: "/drifter-f.png" },
+  planner:     { male: "/planner-m.png",   female: "/planner-f.png" },
+  independent: { male: "/indep-m.png",     female: "/indep-f.png" },
+  balancer:    { male: "/balancer-m.png",  female: "/balancer-f.png" },
+  drifter:     { male: "/drifter-m.png",   female: "/drifter-f.png" },
 };
 
 const Figurines: Record<PersonalityType, Record<GenderType, () => JSX.Element>> = {
@@ -236,88 +236,136 @@ const personalities: Record<PersonalityType, { name: string; desc: string }> = {
   },
 };
 
-type PairingResult = { name: string; pct: number; desc: string; tip: string };
+type PairingResult = { name: string; pct: number; desc: string; tip: string; strengths: string[]; watchOut: string[]; growTogether: string[] };
 
 const pairings: Record<string, PairingResult> = {
   "planner-planner": {
     name: "The Power Couple", pct: 95,
     desc: "You're fully aligned. Same goals, same language, same drive. When two Planners come together, money becomes a shared mission rather than a source of conflict.",
     tip: "Watch out for over-planning. Leave room to enjoy the journey, not just the destination.",
+    strengths: ["Aligned on goals", "Clear communication", "Long-term thinking"],
+    watchOut: ["Over-optimising", "No room for spontaneity", "Analysis paralysis"],
+    growTogether: ["Celebrate milestones", "Enjoy the present", "Delegate decisions"],
   },
   "planner-balancer": {
     name: "The Sweet Spot", pct: 80,
     desc: "You complement each other beautifully. The Planner brings structure, the Balancer brings flexibility. Together you build something that's both stable and enjoyable.",
     tip: "Let the Balancer slow you down sometimes. Not every decision needs a spreadsheet.",
+    strengths: ["Structure meets flexibility", "Healthy discussions", "Balance of fun and discipline"],
+    watchOut: ["Planner steamrolling", "Balancer avoiding hard calls", "Different timelines"],
+    growTogether: ["Joint budget reviews", "Shared short-term goals", "Regular money dates"],
   },
   "balancer-planner": {
     name: "The Sweet Spot", pct: 80,
     desc: "You complement each other beautifully. The Planner brings structure, the Balancer brings flexibility. Together you build something that's both stable and enjoyable.",
     tip: "Let the Balancer slow you down sometimes. Not every decision needs a spreadsheet.",
+    strengths: ["Structure meets flexibility", "Healthy discussions", "Balance of fun and discipline"],
+    watchOut: ["Planner steamrolling", "Balancer avoiding hard calls", "Different timelines"],
+    growTogether: ["Joint budget reviews", "Shared short-term goals", "Regular money dates"],
   },
   "balancer-balancer": {
     name: "The Harmonists", pct: 75,
     desc: "Easy-going and naturally in sync. You rarely fight about money because you both know how to meet in the middle. Life feels balanced, and honestly that's really good.",
     tip: "Be careful not to be so balanced that nothing gets decided. Some goals need commitment.",
+    strengths: ["Low financial conflict", "Natural compromise", "Calm money mindset"],
+    watchOut: ["Avoiding big decisions", "Drifting without goals", "No one leading"],
+    growTogether: ["Set one bold goal", "Create accountability", "Regular financial check-ins"],
   },
   "planner-independent": {
     name: "The Negotiators", pct: 55,
     desc: "There's real tension between wanting full alignment and needing personal freedom. You can make it work, but it takes honest, ongoing conversations about where the lines are.",
     tip: "Define what's shared and what's personal early. Ambiguity is where conflict starts.",
+    strengths: ["Both financially aware", "High individual competence", "Respect for autonomy"],
+    watchOut: ["Power struggles", "Undefined shared funds", "Feeling controlled"],
+    growTogether: ["Clear money boundaries", "Shared emergency fund", "Quarterly money talks"],
   },
   "independent-planner": {
     name: "The Negotiators", pct: 55,
     desc: "There's real tension between wanting full alignment and needing personal freedom. You can make it work, but it takes honest, ongoing conversations about where the lines are.",
     tip: "Define what's shared and what's personal early. Ambiguity is where conflict starts.",
+    strengths: ["Both financially aware", "High individual competence", "Respect for autonomy"],
+    watchOut: ["Power struggles", "Undefined shared funds", "Feeling controlled"],
+    growTogether: ["Clear money boundaries", "Shared emergency fund", "Quarterly money talks"],
   },
   "independent-balancer": {
     name: "The Modern Pair", pct: 65,
     desc: "You work well if communication is open. The Balancer wants connection, the Independent wants space. Finding where those two things overlap is where you'll thrive.",
     tip: "Check in quarterly about shared goals. It doesn't have to be a big deal, just a conversation.",
+    strengths: ["Low-drama dynamic", "Both self-aware", "Comfortable with space"],
+    watchOut: ["Under-communicating", "Avoiding shared planning", "Drifting apart financially"],
+    growTogether: ["One shared goal", "Monthly check-in ritual", "Celebrate wins together"],
   },
   "balancer-independent": {
     name: "The Modern Pair", pct: 65,
     desc: "You work well if communication is open. The Balancer wants connection, the Independent wants space. Finding where those two things overlap is where you'll thrive.",
     tip: "Check in quarterly about shared goals. It doesn't have to be a big deal, just a conversation.",
+    strengths: ["Low-drama dynamic", "Both self-aware", "Comfortable with space"],
+    watchOut: ["Under-communicating", "Avoiding shared planning", "Drifting apart financially"],
+    growTogether: ["One shared goal", "Monthly check-in ritual", "Celebrate wins together"],
   },
   "independent-independent": {
     name: "The Free Spirits", pct: 50,
     desc: "You're both self-sufficient and that's admirable. But shared goals can suffer when no one's driving. Fun together, but financially parallel rather than united.",
     tip: "Pick one or two shared goals to work toward. It doesn't mean giving up your independence.",
+    strengths: ["Self-sufficient", "No financial dependency", "Strong individual habits"],
+    watchOut: ["No shared direction", "Financially parallel", "Gaps in joint planning"],
+    growTogether: ["Define one shared goal", "Simple joint account", "Plan one future milestone"],
   },
   "planner-drifter": {
     name: "The Anchor & The Wave", pct: 35,
     desc: "One of you carries the financial weight while the other floats along. This can work short-term, but resentment tends to build if nothing changes.",
     tip: "The Drifter needs a gentle on-ramp into financial conversations, not a lecture. Start small.",
+    strengths: ["Planner brings stability", "Drifter brings lightness", "Room for growth"],
+    watchOut: ["Resentment building", "Unequal responsibility", "Avoidance of hard topics"],
+    growTogether: ["Gentle financial onboarding", "Small shared wins", "Patience and empathy"],
   },
   "drifter-planner": {
     name: "The Anchor & The Wave", pct: 35,
     desc: "One of you carries the financial weight while the other floats along. This can work short-term, but resentment tends to build if nothing changes.",
     tip: "The Drifter needs a gentle on-ramp into financial conversations, not a lecture. Start small.",
+    strengths: ["Planner brings stability", "Drifter brings lightness", "Room for growth"],
+    watchOut: ["Resentment building", "Unequal responsibility", "Avoidance of hard topics"],
+    growTogether: ["Gentle financial onboarding", "Small shared wins", "Patience and empathy"],
   },
   "balancer-drifter": {
     name: "The Steady Hand", pct: 30,
     desc: "The Balancer often ends up managing more than their share. You pick up the slack without meaning to, and the Drifter doesn't always realise the imbalance.",
     tip: "Have an honest conversation about expectations before the gap gets too wide to bridge.",
+    strengths: ["Balancer provides calm", "Room to learn together", "No ego in money talks"],
+    watchOut: ["Imbalance of effort", "Balancer burning out", "Drifter feeling lost"],
+    growTogether: ["Simple shared budget", "Defined responsibilities", "Celebrate small progress"],
   },
   "drifter-balancer": {
     name: "The Steady Hand", pct: 30,
     desc: "The Balancer often ends up managing more than their share. You pick up the slack without meaning to, and the Drifter doesn't always realise the imbalance.",
     tip: "Have an honest conversation about expectations before the gap gets too wide to bridge.",
+    strengths: ["Balancer provides calm", "Room to learn together", "No ego in money talks"],
+    watchOut: ["Imbalance of effort", "Balancer burning out", "Drifter feeling lost"],
+    growTogether: ["Simple shared budget", "Defined responsibilities", "Celebrate small progress"],
   },
   "independent-drifter": {
     name: "The Wanderers", pct: 20,
     desc: "Neither of you is steering the financial ship. It's exciting in the short term, but without structure, small money issues can quietly become big ones.",
     tip: "Start with one simple shared habit. A monthly check-in, a joint savings jar, anything. Momentum matters.",
+    strengths: ["Low pressure dynamic", "Open to change", "Freedom to grow individually"],
+    watchOut: ["No financial anchor", "Avoiding shared planning", "Small issues snowballing"],
+    growTogether: ["One savings habit", "Monthly financial ritual", "External guidance together"],
   },
   "drifter-independent": {
     name: "The Wanderers", pct: 20,
     desc: "Neither of you is steering the financial ship. It's exciting in the short term, but without structure, small money issues can quietly become big ones.",
     tip: "Start with one simple shared habit. A monthly check-in, a joint savings jar, anything. Momentum matters.",
+    strengths: ["Low pressure dynamic", "Open to change", "Freedom to grow individually"],
+    watchOut: ["No financial anchor", "Avoiding shared planning", "Small issues snowballing"],
+    growTogether: ["One savings habit", "Monthly financial ritual", "External guidance together"],
   },
   "drifter-drifter": {
     name: "The Live-for-Now Duo", pct: 10,
     desc: "You both avoid financial conversations and live in the moment. Life feels free, until it doesn't. This pairing needs external support to build a foundation.",
     tip: "You don't need to figure it all out at once. One conversation, one decision, one step at a time.",
+    strengths: ["No ego battles", "Open to learning together", "Room for big change"],
+    watchOut: ["Avoiding all money talks", "No emergency buffer", "Living purely in the now"],
+    growTogether: ["Seek external support", "One small shared habit", "Commit to one shared goal"],
   },
 };
 
@@ -330,20 +378,20 @@ function getPersonality(answers: Record<number, string>): PersonalityType {
   return letterToType[best];
 }
 
-function encodeData(answers: Record<number, string>, name: string, gender: string, ageRange: string, phone: string): string {
+function encodeData(answers: Record<number, string>, name: string, gender: string, ageRange: string): string {
   const arr = Array.from({ length: 10 }, (_, i) => answers[i] || "");
-  return btoa(unescape(encodeURIComponent(arr.join(",") + "|" + name + "|" + gender + "|" + ageRange + "|" + phone)));
+  return btoa(unescape(encodeURIComponent(arr.join(",") + "|" + name + "|" + gender + "|" + ageRange)));
 }
 
-function decodeData(encoded: string): { answers: Record<number, string>; name: string; gender: GenderType; ageRange: string; phone: string } {
+function decodeData(encoded: string): { answers: Record<number, string>; name: string; gender: GenderType; ageRange: string } {
   try {
     const raw = decodeURIComponent(escape(atob(encoded)));
     const parts = raw.split("|");
     const answers: Record<number, string> = {};
     parts[0].split(",").forEach((v, i) => { if (v) answers[i] = v; });
     const g = parts[2] === "female" ? "female" : "male";
-    return { answers, name: parts[1] || "", gender: g, ageRange: parts[3] || "", phone: parts[4] || "" };
-  } catch { return { answers: {}, name: "", gender: "male", ageRange: "", phone: "" }; }
+    return { answers, name: parts[1] || "", gender: g, ageRange: parts[3] || "" };
+  } catch { return { answers: {}, name: "", gender: "male", ageRange: "" }; }
 }
 
 const slideVariants = {
@@ -403,10 +451,14 @@ function CouplesQuiz() {
     if (!name.trim() || !phone.trim()) return;
 
     if (!isPartnerB) {
-      const phoneFormatted = `${countryCode.replace(/^\+/, "")} ${phone}`;
-      const encoded = encodeData(answers, name, gender, ageRange, phoneFormatted);
+      const encoded = encodeData(answers, name, gender, ageRange);
       const url = `${window.location.origin}/couples?p=${encoded}`;
       setShareUrl(url);
+      fetch("https://script.google.com/macros/s/AKfycbyaBDJ8He8DH-jDQl0kDFa3sNYmYJ8_gFj2MA-ZDmh0sg9VvlehpP4Ti7LZpksq1lOR5w/exec", {
+        method: "POST", mode: "no-cors",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify({ name, phone: `${countryCode.replace(/^\+/, "")} ${phone}`, gender, ageRange, source: "couples", role: "partner-a" }),
+      }).catch(() => {});
       setStage("share");
     } else {
       const typeA = getPersonality(partnerAData!.answers);
@@ -417,10 +469,8 @@ function CouplesQuiz() {
         method: "POST", mode: "no-cors",
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify({
-          nameA: partnerAData!.name,
-          phoneA: partnerAData!.phone,
-          nameB: name,
-          phoneB: `${countryCode.replace(/^\+/, "")} ${phone}`,
+          name: `${partnerAData!.name} & ${name}`,
+          phone: `${partnerAData!.name}: (Partner A) | ${name}: ${countryCode.replace(/^\+/, "")} ${phone}`,
           result: pairing.name,
           source: "couples",
         }),
@@ -650,7 +700,7 @@ function CouplesQuiz() {
           {stage === "result" && result && (
             <motion.div key="result" variants={slideVariants} initial="enter" animate="center" exit="exit"
               className="max-w-2xl w-full">
-              <p className="text-xs tracking-[0.25em] text-[#c8a96e] uppercase mb-1">Your Compatibility Result</p>
+              <p className="text-xs tracking-[0.25em] text-[#c8a96e] uppercase mb-6">Your Compatibility Result</p>
 
               <div className="mb-10">
                 <div className="flex items-end gap-2 mb-2">
@@ -696,29 +746,30 @@ function CouplesQuiz() {
                 <p className="text-[#4a4540] font-light text-base leading-relaxed">{result.pairing.desc}</p>
               </div>
 
-              <div className="border-l-2 border-[#c8a96e] pl-5 mb-6">
+              <div className="border-l-2 border-[#c8a96e] pl-5 mb-10">
                 <p className="text-[10px] tracking-[0.2em] text-[#c8a96e] uppercase mb-2">Our tip</p>
                 <p className="text-sm text-[#4a4540] font-light leading-relaxed">{result.pairing.tip}</p>
               </div>
 
-              {/* Blurred full report teaser */}
-              <div className="relative mb-4 border border-[#e8e4df] overflow-hidden">
-                <div className="grid grid-cols-2 gap-6 p-6 pb-20 pointer-events-none select-none">
+              {/* Blurred full report section */}
+              <div className="relative mb-8 border border-[#e8e4df] overflow-hidden">
+                <div className="grid grid-cols-3 gap-6 p-6 pb-20 pointer-events-none select-none">
                   {[
-                    { label: "Your strengths as a couple", items: ["Open communication", "Mutual respect", "Shared values"] },
-                    { label: "Areas to work on", items: ["Aligning financial goals", "Building shared systems", "Long-term planning together"] },
+                    { label: "Couple Strengths", items: result.pairing.strengths },
+                    { label: "Watch Out For",    items: result.pairing.watchOut },
+                    { label: "Grow Together",    items: result.pairing.growTogether },
                   ].map(col => (
                     <div key={col.label}>
                       <p className="text-[10px] tracking-[0.2em] uppercase text-[#9a9490] mb-3">{col.label}</p>
                       {col.items.map((item, i) => (
-                        <p key={item} className={`text-xs text-[#4a4540] font-light mb-2 leading-snug ${i >= 1 ? "blur-sm" : ""}`}>{item}</p>
+                        <p key={item} className={`text-xs text-[#4a4540] font-light mb-2 leading-snug ${i >= 1 ? "blur-sm select-none" : ""}`}>{item}</p>
                       ))}
                     </div>
                   ))}
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[#FAF8F5] via-[#FAF8F5]/90 to-transparent flex items-end justify-center pb-4">
+                <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#FAF8F5] via-[#FAF8F5]/90 to-transparent flex items-end justify-center pb-6">
                   <div className="text-center">
-                    <p className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase mb-1">Full report</p>
+                    <p className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase mb-2">Full report</p>
                     <p className="serif text-base text-[#0f172a] leading-snug">Our specialist will reach out<br />with your detailed breakdown.</p>
                   </div>
                 </div>

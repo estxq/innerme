@@ -4,8 +4,8 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const links = [
-  { href: "/quiz", label: "Finance Quiz" },
-  { href: "/couples", label: "Couples Test" },
+  { href: "/quiz", label: "Financial Persona" },
+  { href: "/couples", label: "Couple Compatibility" },
   { href: "/lucky-draw", label: "Lucky Draw" },
   { href: "/giveaway", label: "Giveaway" },
 ];
