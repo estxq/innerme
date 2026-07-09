@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const pages = [
   { href: "/financial-persona", label: "01", title: "Financial Persona", desc: "Discover your money mindset in 10 questions." },
-  { href: "/couples", label: "02", title: "Couple Compatibility", desc: "See how you and your partner align financially." },
+  { href: "/couple-compatibility", label: "02", title: "Couple Compatibility", desc: "See how you and your partner align financially." },
   { href: "/lucky-draw", label: "03", title: "Lucky Draw", desc: "Enter for a chance to win exciting prizes." },
   { href: "/giveaway", label: "04", title: "Giveaway", desc: "Participate in our latest giveaway." },
 ];

@@ -452,7 +452,7 @@ function CouplesQuiz() {
 
     if (!isPartnerB) {
       const encoded = encodeData(answers, name, gender, ageRange);
-      const url = `${window.location.origin}/couples?p=${encoded}`;
+      const url = `${window.location.origin}/couple-compatibility?p=${encoded}`;
       setShareUrl(url);
       fetch("https://script.google.com/macros/s/AKfycbyaBDJ8He8DH-jDQl0kDFa3sNYmYJ8_gFj2MA-ZDmh0sg9VvlehpP4Ti7LZpksq1lOR5w/exec", {
         method: "POST", mode: "no-cors",
