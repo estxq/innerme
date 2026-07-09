@@ -13,7 +13,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="bg-[#FAF8F5]" style={{ fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ fontFamily: "'Inter', sans-serif" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap');
         .serif { font-family: 'Playfair Display', Georgia, serif; }
@@ -51,11 +51,7 @@ export default function Home() {
       {/* Hero */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-8 md:px-16 overflow-hidden text-center -mt-[57px] pt-[57px]">
 
-        {/* Background image */}
-        <div className="absolute inset-0 pointer-events-none">
-          <img src="/magicpattern-oPH_5xuMgQw-unsplash.jpg" alt="" className="w-full h-full object-cover"/>
-          <div className="absolute inset-0 bg-[#FAF8F5]/70"/>
-        </div>
+        <div className="absolute inset-0 pointer-events-none"/>
 
         <div className="relative max-w-3xl">
           <p className="fade-up text-[10px] tracking-[0.35em] text-[#c8a96e] uppercase mb-4">Welcome to InnerMe</p>

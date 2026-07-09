@@ -488,7 +488,7 @@ function CouplesQuiz() {
   }
 
   return (
-    <div className="relative min-h-[calc(100dvh-57px)] bg-[#FAF8F5] flex flex-col"
+    <div className="relative min-h-[calc(100dvh-57px)] flex flex-col"
       style={{ fontFamily: "'Inter', sans-serif" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap');
@@ -790,7 +790,7 @@ function CouplesQuiz() {
 export default function CouplesPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-[calc(100dvh-57px)] bg-[#FAF8F5] flex items-center justify-center">
+      <div className="min-h-[calc(100dvh-57px)] flex items-center justify-center">
         <p className="text-xs tracking-[0.2em] text-[#9a9490] uppercase">Loading...</p>
       </div>
     }>

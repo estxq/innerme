@@ -269,7 +269,7 @@ export default function QuizPage() {
   const p = result ? personalities[result] : null;
 
   return (
-    <div className="relative min-h-[calc(100dvh-57px)] bg-[#FAF8F5] flex flex-col"
+    <div className="relative min-h-[calc(100dvh-57px)] flex flex-col"
       style={{ fontFamily: "'Inter', sans-serif" }}>
 
       {/* Google Font */}

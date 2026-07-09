@@ -1,6 +1,6 @@
 export default function GiveawayPage() {
   return (
-    <div className="min-h-[calc(100dvh-57px)] bg-[#FAF8F5] flex items-center justify-center px-6 pb-16"
+    <div className="min-h-[calc(100dvh-57px)] flex items-center justify-center px-6 pb-16"
       style={{ fontFamily: "'Inter', sans-serif" }}>
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@300;400;500&display=swap');`}</style>
       <div className="text-center">

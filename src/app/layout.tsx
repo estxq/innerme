@@ -13,7 +13,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} bg-transparent min-h-screen`}>
+      <body className={`${poppins.className} min-h-screen`}>
+        {/* Global background */}
+        <div className="fixed inset-0 -z-10">
+          <img src="/magicpattern-oPH_5xuMgQw-unsplash.jpg" alt="" className="w-full h-full object-cover"/>
+          <div className="absolute inset-0 bg-[#FAF8F5]/85"/>
+        </div>
         <Navbar />
         <main>{children}</main>
       </body>
