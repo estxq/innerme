@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} bg-[#fef9f4] min-h-screen`}>
+      <body className={`${poppins.className} bg-transparent min-h-screen`}>
         <Navbar />
         <main>{children}</main>
       </body>

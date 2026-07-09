@@ -49,7 +49,7 @@ export default function Home() {
       )}
 
       {/* Hero */}
-      <section className="relative min-h-[calc(100dvh-57px)] flex flex-col items-center justify-center px-8 md:px-16 overflow-hidden text-center">
+      <section className="relative min-h-screen flex flex-col items-center justify-center px-8 md:px-16 overflow-hidden text-center -mt-[57px] pt-[57px]">
 
         {/* Background image */}
         <div className="absolute inset-0 pointer-events-none">
