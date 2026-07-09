@@ -19,7 +19,7 @@ export default function Navbar() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@300;400;500&display=swap');
       `}</style>
-      <nav className="sticky top-0 z-50 bg-white/10 backdrop-blur-sm border-b border-white/20">
+      <nav className="sticky top-0 z-50 bg-white/15 backdrop-blur-xl border-b border-white/30" style={{ WebkitBackdropFilter: "blur(20px)" }}>
         <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="text-[#0f172a] tracking-[0.08em] text-sm font-medium uppercase"
