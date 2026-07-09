@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Global background */}
         <div className="fixed inset-0 -z-10">
           <img src="/magicpattern-oPH_5xuMgQw-unsplash.jpg" alt="" className="w-full h-full object-cover"/>
-          <div className="absolute inset-0 bg-[#FAF8F5]/85"/>
+          <div className="absolute inset-0 bg-[#FAF8F5]/50"/>
         </div>
         <Navbar />
         <main>{children}</main>
