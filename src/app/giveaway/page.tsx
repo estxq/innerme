@@ -115,10 +115,21 @@ export default function GiveawayPage() {
   const [name, setName] = useState("");
   const [countryCode, setCountryCode] = useState("+65");
   const [phone, setPhone] = useState("");
+  const [bookingDate, setBookingDate] = useState("");
+  const [bookingTime, setBookingTime] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [phoneError, setPhoneError] = useState("");
   const [agreed, setAgreed] = useState(false);
+
+  const today = new Date().toISOString().split("T")[0];
+  const timeSlots = [
+    "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM",
+    "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM",
+    "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM",
+    "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM",
+    "05:00 PM", "05:30 PM",
+  ];
   const countdown = useCountdown(DEADLINE);
 
   function validatePhone(code: string, num: string): string {
@@ -137,6 +148,8 @@ export default function GiveawayPage() {
     if (!name.trim()) { setPhoneError("Please enter your name."); return; }
     const err = validatePhone(countryCode, phone);
     if (err) { setPhoneError(err); return; }
+    if (!bookingDate) { setPhoneError("Please select a preferred date."); return; }
+    if (!bookingTime) { setPhoneError("Please select a preferred time."); return; }
     if (!agreed) { setPhoneError("Please agree to the terms before submitting."); return; }
     setPhoneError("");
     setLoading(true);
@@ -144,7 +157,7 @@ export default function GiveawayPage() {
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST", mode: "no-cors",
         headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({ name, phone: `${countryCode.replace(/^\+/, "")} ${phone}`, source: "giveaway" }),
+        body: JSON.stringify({ name, phone: `${countryCode.replace(/^\+/, "")} ${phone}`, bookingDate, bookingTime, source: "giveaway" }),
       });
     } catch {}
     setLoading(false);
@@ -244,6 +257,22 @@ export default function GiveawayPage() {
                 placeholder="9123 4567" required
                 className="bg-transparent text-[#0f172a] text-sm font-light placeholder:text-[#c0bbb5] focus:outline-none flex-1 min-w-0"/>
             </div>
+          </div>
+
+          {/* Preferred booking date & time */}
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase">Preferred Session Date</label>
+            <input type="date" value={bookingDate} onChange={e => setBookingDate(e.target.value)} min={today} required
+              className="bg-transparent border-b border-[#e8e4df] pb-3 text-[#0f172a] text-sm font-light focus:outline-none focus:border-[#0f172a] transition-colors duration-200"/>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase">Preferred Session Time</label>
+            <select value={bookingTime} onChange={e => setBookingTime(e.target.value)} required
+              className="bg-transparent border-b border-[#e8e4df] pb-3 text-[#0f172a] text-sm font-light focus:outline-none focus:border-[#0f172a] transition-colors duration-200 appearance-none cursor-pointer">
+              <option value="" disabled>Select a time slot</option>
+              {timeSlots.map(t => <option key={t} value={t}>{t}</option>)}
+            </select>
           </div>
 
           {/* Consent box */}
