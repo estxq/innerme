@@ -191,7 +191,7 @@ export default function GiveawayPage() {
 
       {/* Hero banner */}
       <div className="bg-[#0f172a] px-6 py-12 text-center">
-        <p className="text-xs tracking-[0.3em] text-[#c8a96e] uppercase mb-4">InnerMe Giveaway</p>
+        <p className="text-xs tracking-[0.3em] text-[#c8a96e] uppercase mb-4">InnerMe Gift</p>
         <h1 className="serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.15] text-white mb-0">
           Win a pair of<br /><em>Sporting Sunglasses.</em>
         </h1>
@@ -222,7 +222,7 @@ export default function GiveawayPage() {
           {[
             { n: "1", title: "Fill in the form below", desc: "Enter your name and mobile number." },
             { n: "2", title: "Complete a session with us", desc: "Book and attend a complimentary 20-minute financial planning session." },
-            { n: "3", title: "Get entered into the draw", desc: "One winner will be selected at random after the draw closes on 31 July 2026." },
+            { n: "3", title: "Claim your sunglasses", desc: "Every participant who completes a session is guaranteed to receive a pair of Sporting Sunglasses." },
           ].map(step => (
             <div key={step.n} className="flex items-start gap-4">
               <div className="w-6 h-6 rounded-full bg-[#c8a96e] flex items-center justify-center shrink-0 mt-0.5">
