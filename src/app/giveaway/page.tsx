@@ -179,9 +179,10 @@ export default function GiveawayPage() {
       {/* Hero banner */}
       <div className="bg-[#0f172a] px-6 py-12 text-center">
         <p className="text-xs tracking-[0.3em] text-[#c8a96e] uppercase mb-4">InnerMe Giveaway</p>
-        <h1 className="serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.15] text-white mb-8">
+        <h1 className="serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.15] text-white mb-6">
           Win a pair of<br /><em>Sporting Sunglasses.</em>
         </h1>
+        <img src="/sunglasses.png" alt="Sporting Sunglasses" className="mx-auto w-64 md:w-80 object-contain mb-6 drop-shadow-2xl"/>
 
         {/* Countdown */}
         <div className="flex justify-center gap-6 mb-2">
