@@ -197,6 +197,7 @@ export default function QuizPage() {
   const [result, setResult] = useState<PersonalityKey | null>(null);
   const [direction, setDirection] = useState(1);
   const [showAdmin, setShowAdmin] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [leads, setLeads] = useState<object[]>(() => {
     if (typeof window === "undefined") return [];
     return JSON.parse(localStorage.getItem("quiz_leads") || "[]");
@@ -458,10 +459,25 @@ export default function QuizPage() {
                 Your financial personality is not who you are forever. It&apos;s a starting point to help you grow, improve and build the life you want.
               </p>
 
-              <button onClick={() => { setStage("intro"); setAnswers({}); setCurrentQ(0); setResult(null); }}
-                className="mt-8 text-xs tracking-[0.2em] text-[#9a9490] uppercase underline underline-offset-4 hover:text-[#0f172a] transition-colors cursor-pointer bg-transparent border-none">
-                Retake quiz
-              </button>
+              <div className="mt-8 flex items-center gap-6">
+                <button onClick={() => { setStage("intro"); setAnswers({}); setCurrentQ(0); setResult(null); }}
+                  className="text-xs tracking-[0.2em] text-[#9a9490] uppercase underline underline-offset-4 hover:text-[#0f172a] transition-colors cursor-pointer bg-transparent border-none">
+                  Retake quiz
+                </button>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText("https://www.innerme.sg/financial-persona");
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 2000);
+                  }}
+                  className="flex items-center gap-2 text-xs tracking-[0.2em] text-[#9a9490] uppercase hover:text-[#0f172a] transition-colors cursor-pointer bg-transparent border-none">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                    <path d="M6 10.5a.5.5 0 0 1-.5-.5V4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5H6z" stroke="currentColor" strokeWidth="1.2"/>
+                    <path d="M4 5.5H3.5A1.5 1.5 0 0 0 2 7v5.5A1.5 1.5 0 0 0 3.5 14H9a1.5 1.5 0 0 0 1.5-1.5V12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+                  </svg>
+                  {copied ? "Copied!" : "Share quiz"}
+                </button>
+              </div>
             </motion.div>
           )}
 
