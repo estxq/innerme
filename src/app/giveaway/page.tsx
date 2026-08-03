@@ -185,7 +185,7 @@ export default function GiveawayPage() {
         <img src="/sunglasses.png" alt="Sporting Sunglasses" className="mx-auto w-full max-w-lg object-contain mb-0 drop-shadow-2xl"/>
 
         {/* Countdown */}
-        <div className="flex justify-center gap-6 mt-0 mb-2">
+        <div className="flex justify-center gap-6 -mt-8 mb-2">
           {[
             { label: "Days", val: countdown.days },
             { label: "Hours", val: countdown.hours },
