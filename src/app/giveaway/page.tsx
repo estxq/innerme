@@ -187,6 +187,11 @@ export default function GiveawayPage() {
     <div className="min-h-[calc(100dvh-57px)] bg-[#FAF8F5]" style={{ fontFamily: "'Inter', sans-serif" }}>
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap');
         .serif { font-family: 'Playfair Display', Georgia, serif; }
+        @keyframes spin3d {
+          0%   { transform: perspective(600px) rotateY(0deg); }
+          100% { transform: perspective(600px) rotateY(360deg); }
+        }
+        .specs-spin { animation: spin3d 4s linear infinite; transform-style: preserve-3d; }
       `}</style>
 
       {/* Hero banner */}
@@ -195,7 +200,7 @@ export default function GiveawayPage() {
         <h1 className="serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.15] text-white mb-0">
           Win a pair of<br /><em>Sporting Sunglasses.</em>
         </h1>
-        <img src="/sunglasses.png" alt="Sporting Sunglasses" className="mx-auto w-full max-w-lg object-contain -mb-10 drop-shadow-2xl"/>
+        <img src="/sunglasses.png" alt="Sporting Sunglasses" className="specs-spin mx-auto w-full max-w-lg object-contain -mb-10 drop-shadow-2xl"/>
 
         {/* Countdown */}
         <div className="flex justify-center gap-6 mb-2">
