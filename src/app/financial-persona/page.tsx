@@ -259,7 +259,22 @@ export default function QuizPage() {
     fetch(GOOGLE_SCRIPT_URL, {
       method: "POST", mode: "no-cors",
       headers: { "Content-Type": "text/plain" },
-      body: JSON.stringify({ name, phone: `${countryCode.replace(/^\+/, "")} ${phone}`, result: p.name, source: "quiz" }),
+      body: JSON.stringify({
+        name,
+        phone: `${countryCode.replace(/^\+/, "")} ${phone}`,
+        result: p.name,
+        source: "quiz",
+        q1_age: quizData[0].opts[["A","B","C","D"].indexOf(answers[0])] ?? "",
+        q2_extra_money: quizData[1].opts[["A","B","C","D"].indexOf(answers[1])] ?? "",
+        q3_financial_fear: quizData[2].opts[["A","B","C","D"].indexOf(answers[2])] ?? "",
+        q4_view_money: quizData[3].opts[["A","B","C","D"].indexOf(answers[3])] ?? "",
+        q5_planning: quizData[4].opts[["A","B","C","D"].indexOf(answers[4])] ?? "",
+        q6_retirement: quizData[5].opts[["A","B","C","D"].indexOf(answers[5])] ?? "",
+        q7_lose_income: quizData[6].opts[["A","B","C","D"].indexOf(answers[6])] ?? "",
+        q8_investing: quizData[7].opts[["A","B","C","D"].indexOf(answers[7])] ?? "",
+        q9_sounds_like_you: quizData[8].opts[["A","B","C","D"].indexOf(answers[8])] ?? "",
+        q10_financial_decisions: quizData[9].opts[["A","B","C","D"].indexOf(answers[9])] ?? "",
+      }),
     }).catch(() => {});
 
     setResult(tier);
