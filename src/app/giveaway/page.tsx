@@ -312,9 +312,9 @@ export default function GiveawayPage() {
             <label className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase">Which financial goals are important to you? <span className="normal-case">(Select all that apply)</span></label>
             <div className="flex flex-col gap-2">
               {[
-                "Growing wealth / create more income streams",
-                "Be ready against unexpected expenses",
-                "Plan for early retirement",
+                "Grow my wealth and build multiple income streams",
+                "Protect myself from unexpected financial setbacks",
+                "Retire early and live life on my own terms",
               ].map(goal => (
                 <label key={goal} className="flex items-center gap-3 cursor-pointer">
                   <input type="checkbox" checked={financialGoals.includes(goal)} onChange={() => toggleGoal(goal)}
