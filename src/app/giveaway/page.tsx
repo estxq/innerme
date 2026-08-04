@@ -200,37 +200,36 @@ export default function GiveawayPage() {
         .specs-spin { animation: spin3d 4s linear infinite; transform-style: preserve-3d; }
       `}</style>
 
-      {/* Hero banner */}
-      <div className="bg-[#0f172a] px-6 py-12 text-center">
-        <p className="text-xs tracking-[0.3em] text-[#c8a96e] uppercase mb-4">InnerMe Gift</p>
-        <h1 className="serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.15] text-white mb-0">
-          Win a pair of<br /><em>Sporting Sunglasses.</em>
-        </h1>
-        <img src="/sunglasses.png" alt="Sporting Sunglasses" className="mx-auto w-full max-w-lg object-contain -mb-10 drop-shadow-2xl"/>
+      {/* Hero banner + sport showcase — one continuous dark block */}
+      <div className="bg-[#0f172a]">
+        <div className="px-6 pt-12 pb-8 text-center">
+          <p className="text-xs tracking-[0.3em] text-[#c8a96e] uppercase mb-4">InnerMe Gift</p>
+          <h1 className="serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.15] text-white mb-0">
+            Win a pair of<br /><em>Sporting Sunglasses.</em>
+          </h1>
+          <img src="/sunglasses.png" alt="Sporting Sunglasses" className="mx-auto w-full max-w-lg object-contain -mb-10 drop-shadow-2xl"/>
 
-        {/* Countdown */}
-        <div className="flex justify-center gap-6 mb-2">
-          {[
-            { label: "Days", val: countdown.days },
-            { label: "Hours", val: countdown.hours },
-            { label: "Minutes", val: countdown.minutes },
-            { label: "Seconds", val: countdown.seconds },
-          ].map(({ label, val }) => (
-            <div key={label} className="text-center">
-              <p className="serif text-[clamp(2rem,6vw,3.5rem)] leading-none text-white font-light">
-                {String(val).padStart(2, "0")}
-              </p>
-              <p className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase mt-3">{label}</p>
-            </div>
-          ))}
+          {/* Countdown */}
+          <div className="flex justify-center gap-6 mb-2">
+            {[
+              { label: "Days", val: countdown.days },
+              { label: "Hours", val: countdown.hours },
+              { label: "Minutes", val: countdown.minutes },
+              { label: "Seconds", val: countdown.seconds },
+            ].map(({ label, val }) => (
+              <div key={label} className="text-center">
+                <p className="serif text-[clamp(2rem,6vw,3.5rem)] leading-none text-white font-light">
+                  {String(val).padStart(2, "0")}
+                </p>
+                <p className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase mt-3">{label}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Sport showcase */}
-      <div className="bg-[#FAF8F5]">
-        <div className="max-w-6xl mx-auto px-6 pt-14 pb-4">
-          <p className="text-xs tracking-[0.3em] text-[#9B6F55] uppercase mb-3">Built for every adventure</p>
-          <h2 className="text-[#0f172a] text-[clamp(1.5rem,3vw,2.2rem)] font-light leading-snug mb-10"
+        <div className="max-w-6xl mx-auto px-6 pt-16 pb-8 border-t border-white/10">
+          <p className="text-xs tracking-[0.3em] text-[#c8a96e] uppercase mb-3">Built for every adventure</p>
+          <h2 className="text-white text-[clamp(1.5rem,3vw,2.2rem)] font-light leading-snug mb-10"
             style={{ fontFamily: "'Playfair Display', serif" }}>
             One pair. Every sport.
           </h2>
@@ -254,10 +253,13 @@ export default function GiveawayPage() {
             </div>
           ))}
         </div>
+
+        {/* Smooth fade from navy into the cream page background */}
+        <div className="h-20" style={{ background: "linear-gradient(to bottom, #0f172a, #FAF8F5)" }}/>
       </div>
 
       {/* How to win */}
-      <div className="max-w-2xl mx-auto px-6 py-10 border-b border-[#e8e4df]">
+      <div className="max-w-2xl mx-auto px-6 pt-4 pb-10 border-b border-[#e8e4df]">
         <p className="text-xs tracking-[0.25em] text-[#9a9490] uppercase mb-6">How to win</p>
         <div className="flex flex-col gap-5">
           {[
