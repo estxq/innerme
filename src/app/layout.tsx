@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={`${poppins.className} min-h-screen`}>
         {/* Global background */}
-        <div className="fixed inset-0 -z-10 bg-[#F5EFE4]"/>
+        <div className="fixed inset-0 -z-10 bg-[#FBF9F6]"/>
         <Navbar />
         <main>{children}</main>
 
