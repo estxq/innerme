@@ -245,8 +245,8 @@ export default function GiveawayPage() {
           {/* Desktop/tablet: callouts on the photo, circle touching the lens */}
           {[
             { top: "26%", left: "40%", side: "left", title: "Impact Resistant", desc: "Shatterproof polycarbonate lens" },
-            { top: "34%", left: "56%", side: "right", title: "UV Protection", desc: "Filters harmful UV rays" },
-            { top: "45%", left: "24%", side: "left", title: "Adjustable Nose Pads", desc: "Smooth, flexible fit — no pressure on the nose bridge" },
+            { top: "40%", left: "48%", side: "right", title: "UV Protection", desc: "Filters harmful UV rays" },
+            { top: "58%", left: "19%", side: "left", title: "Adjustable Nose Pads", desc: "Smooth, flexible fit — no pressure on the nose bridge" },
             { top: "58%", left: "50%", side: "left", title: "One-Piece Lens", desc: "Wider, clearer field of view" },
           ].map(c => c.side === "left" ? (
             <div key={c.title} className="hidden sm:flex absolute items-center" style={{ top: c.top, left: c.left, transform: "translateX(-100%)" }}>
@@ -254,13 +254,13 @@ export default function GiveawayPage() {
                 <p className="text-xs font-medium text-[#0f172a] leading-tight whitespace-nowrap">{c.title}</p>
                 <p className="text-[10px] text-[#9a9490] font-light leading-tight mt-0.5">{c.desc}</p>
               </div>
-              <span className="h-px w-10 md:w-14 bg-[#0f172a]/40 shrink-0"/>
+              <span className="h-px w-24 md:w-40 bg-[#0f172a]/40 shrink-0"/>
               <span className="w-2 h-2 rounded-full bg-white border border-[#0f172a] shrink-0"/>
             </div>
           ) : (
             <div key={c.title} className="hidden sm:flex absolute items-center" style={{ top: c.top, left: c.left }}>
               <span className="w-2 h-2 rounded-full bg-white border border-[#0f172a] shrink-0"/>
-              <span className="h-px w-10 md:w-14 bg-[#0f172a]/40 shrink-0"/>
+              <span className="h-px w-24 md:w-40 bg-[#0f172a]/40 shrink-0"/>
               <div className="ml-1.5 max-w-[11rem]">
                 <p className="text-xs font-medium text-[#0f172a] leading-tight whitespace-nowrap">{c.title}</p>
                 <p className="text-[10px] text-[#9a9490] font-light leading-tight mt-0.5">{c.desc}</p>
