@@ -232,15 +232,13 @@ export default function GiveawayPage() {
         </div>
       </div>
 
-      {/* Product highlight */}
+      {/* Protection features — annotated on the product photo */}
       <div className="bg-[#FAF8F5] px-6 pt-16 pb-10 text-center">
-        <p className="text-xs tracking-[0.3em] text-[#9B6F55] uppercase mb-3">Built for every adventure</p>
+        <p className="text-xs tracking-[0.3em] text-[#9B6F55] uppercase mb-3">Layered protection</p>
         <h2 className="serif text-[clamp(1.5rem,3vw,2.2rem)] text-[#0f172a] font-light leading-snug">
-          One pair. Every sport.
+          Safer sport, every time.
         </h2>
       </div>
-
-      {/* Protection features — annotated on the product photo */}
       <div className="max-w-xl mx-auto px-6 pb-20">
         <div className="relative">
           <img src="/sunglasses.png" alt="Sporting Sunglasses" className="w-full h-auto object-contain"/>
@@ -260,6 +258,14 @@ export default function GiveawayPage() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Sport panels intro */}
+      <div className="bg-[#FAF8F5] px-6 pt-4 pb-10 text-center">
+        <p className="text-xs tracking-[0.3em] text-[#9B6F55] uppercase mb-3">Built for every adventure</p>
+        <h2 className="serif text-[clamp(1.5rem,3vw,2.2rem)] text-[#0f172a] font-light leading-snug">
+          One pair. Every sport.
+        </h2>
       </div>
 
       {/* 3-column sport panels */}
