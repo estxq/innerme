@@ -245,9 +245,10 @@ export default function GiveawayPage() {
         <div className="relative">
           <img src="/sunglasses.png" alt="Sporting Sunglasses" className="w-full h-auto object-contain"/>
           {[
-            { top: "20%", left: "18%", title: "Impact Resistant", desc: "Shatterproof polycarbonate lens" },
-            { top: "46%", left: "32%", title: "UV Protection", desc: "Filters harmful UV rays" },
-            { top: "70%", left: "44%", title: "One-Piece Lens", desc: "Wider, clearer field of view" },
+            { top: "16%", left: "16%", title: "Impact Resistant", desc: "Shatterproof polycarbonate lens" },
+            { top: "28%", left: "46%", title: "UV Protection", desc: "Filters harmful UV rays" },
+            { top: "55%", left: "26%", title: "Adjustable Nose Pads", desc: "Smooth, flexible fit — no pressure on the nose bridge" },
+            { top: "74%", left: "58%", title: "One-Piece Lens", desc: "Wider, clearer field of view" },
           ].map(c => (
             <div key={c.title} className="absolute flex items-center" style={{ top: c.top, left: c.left }}>
               <span className="w-2 h-2 rounded-full bg-white border border-[#0f172a] shrink-0"/>
