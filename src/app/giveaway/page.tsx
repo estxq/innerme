@@ -241,6 +241,26 @@ export default function GiveawayPage() {
         </h2>
       </div>
 
+      {/* Protection features */}
+      <div className="max-w-2xl mx-auto px-6 pb-16">
+        <p className="text-xs tracking-[0.25em] text-[#9a9490] uppercase mb-2 text-center">Layered protection</p>
+        <h3 className="serif text-[clamp(1.25rem,2.5vw,1.75rem)] text-[#0f172a] font-light text-center mb-10">
+          Safer sport, every time.
+        </h3>
+        <div className="flex flex-col divide-y divide-[#e8e4df]">
+          {[
+            { title: "Impact Resistant", desc: "Polycarbonate lenses engineered to resist shattering. Lightweight, durable, wind and dust resistant." },
+            { title: "UV Protection", desc: "Effectively filters UV rays so you can enjoy your sport with full protection." },
+            { title: "One-Piece Lens", desc: "Integrated cut with HD coating for a wider, clearer field of view." },
+          ].map(f => (
+            <div key={f.title} className="flex items-start justify-between gap-6 py-5">
+              <p className="text-sm text-[#0f172a] font-medium shrink-0 w-40">{f.title}</p>
+              <p className="text-xs text-[#9a9490] font-light leading-relaxed text-right">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* 3-column sport panels */}
       <div className="grid grid-cols-1 md:grid-cols-3 min-h-[420px]">
         {[
