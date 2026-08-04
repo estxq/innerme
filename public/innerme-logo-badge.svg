@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&amp;family=Inter:wght@500&amp;display=swap');
+      .inner { font-family: Inter, Helvetica, sans-serif; font-weight: 500; font-size: 36px; letter-spacing: 3px; fill: #2a6080; }
+      .me { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 400; font-size: 36px; fill: #2a6080; }
+    </style>
+  </defs>
+
+  <defs>
+    <radialGradient id="bg" cx="35%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#fde8e0"/>
+      <stop offset="55%" stop-color="#f5dde0"/>
+      <stop offset="100%" stop-color="#e8cdd2"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Circle badge -->
+  <circle cx="200" cy="200" r="185" fill="url(#bg)"/>
+
+  <!-- Logo centered in circle -->
+  <text x="200" y="214" text-anchor="middle">
+    <tspan class="inner">INNER</tspan><tspan class="me">ME</tspan>
+  </text>
+</svg>
