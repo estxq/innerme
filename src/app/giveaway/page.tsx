@@ -227,7 +227,7 @@ export default function GiveawayPage() {
       </div>
 
       {/* Sport showcase */}
-      <div style={{ background: "linear-gradient(135deg, #FBF3EA 0%, #F7EFEA 40%, #EFEEEE 70%, #E9EFF0 100%)" }}>
+      <div className="bg-[#FAF8F5]">
         <div className="max-w-6xl mx-auto px-6 pt-14 pb-4">
           <p className="text-xs tracking-[0.3em] text-[#9B6F55] uppercase mb-3">Built for every adventure</p>
           <h2 className="text-[#0f172a] text-[clamp(1.5rem,3vw,2.2rem)] font-light leading-snug mb-10"
