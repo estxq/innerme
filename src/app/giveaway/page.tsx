@@ -227,7 +227,7 @@ export default function GiveawayPage() {
       </div>
 
       {/* Sport showcase */}
-      <div className="bg-[#0a0f1a]">
+      <div className="bg-[#0f172a]">
         <div className="max-w-6xl mx-auto px-6 pt-14 pb-4">
           <p className="text-xs tracking-[0.3em] text-[#c8a96e] uppercase mb-3">Built for every adventure</p>
           <h2 className="text-white text-[clamp(1.5rem,3vw,2.2rem)] font-light leading-snug mb-10"
@@ -241,7 +241,7 @@ export default function GiveawayPage() {
           {[
             { img: "/sport-cycling.jpg", sport: "Cycling", desc: "UV protection at full speed.", pos: "object-top" },
             { img: "/sport-running.jpg", sport: "Running", desc: "Lightweight, sweat-proof fit.", pos: "object-center" },
-            { img: "/sport-hiking.jpg", sport: "Hiking", desc: "Polarised lenses for the trail.", pos: "object-center" },
+            { img: "/sport-hiking.jpg", sport: "Hiking", desc: "Polarised lenses for the trail.", pos: "object-top" },
           ].map(({ img, sport, desc, pos }) => (
             <div key={sport} className="relative overflow-hidden min-h-[320px] md:min-h-[420px]">
               <img src={img} alt={sport}
