@@ -214,7 +214,7 @@ export default function GiveawayPage() {
               <p className="serif text-[clamp(2rem,6vw,3.5rem)] leading-none text-white font-light">
                 {String(val).padStart(2, "0")}
               </p>
-              <p className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase mt-1">{label}</p>
+              <p className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase mt-3">{label}</p>
             </div>
           ))}
         </div>
