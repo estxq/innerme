@@ -201,11 +201,9 @@ export default function GiveawayPage() {
       `}</style>
 
       {/* Hero banner */}
-      <div className="px-6 py-12 text-center" style={{
-        background: "linear-gradient(135deg, #FBF3EA 0%, #F7EFEA 40%, #EFEEEE 70%, #E9EFF0 100%)"
-      }}>
-        <p className="text-xs tracking-[0.3em] text-[#9B6F55] uppercase mb-4">InnerMe Gift</p>
-        <h1 className="serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.15] text-[#0f172a] mb-0">
+      <div className="bg-[#0f172a] px-6 py-12 text-center">
+        <p className="text-xs tracking-[0.3em] text-[#c8a96e] uppercase mb-4">InnerMe Gift</p>
+        <h1 className="serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.15] text-white mb-0">
           Win a pair of<br /><em>Sporting Sunglasses.</em>
         </h1>
         <img src="/sunglasses.png" alt="Sporting Sunglasses" className="mx-auto w-full max-w-lg object-contain -mb-10 drop-shadow-2xl"/>
@@ -219,20 +217,20 @@ export default function GiveawayPage() {
             { label: "Seconds", val: countdown.seconds },
           ].map(({ label, val }) => (
             <div key={label} className="text-center">
-              <p className="serif text-[clamp(2rem,6vw,3.5rem)] leading-none text-[#0f172a] font-light">
+              <p className="serif text-[clamp(2rem,6vw,3.5rem)] leading-none text-white font-light">
                 {String(val).padStart(2, "0")}
               </p>
-              <p className="text-[10px] tracking-[0.2em] text-[#7a756f] uppercase mt-3">{label}</p>
+              <p className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase mt-3">{label}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Sport showcase */}
-      <div className="bg-[#0f172a]">
+      <div style={{ background: "linear-gradient(135deg, #FBF3EA 0%, #F7EFEA 40%, #EFEEEE 70%, #E9EFF0 100%)" }}>
         <div className="max-w-6xl mx-auto px-6 pt-14 pb-4">
-          <p className="text-xs tracking-[0.3em] text-[#c8a96e] uppercase mb-3">Built for every adventure</p>
-          <h2 className="text-white text-[clamp(1.5rem,3vw,2.2rem)] font-light leading-snug mb-10"
+          <p className="text-xs tracking-[0.3em] text-[#9B6F55] uppercase mb-3">Built for every adventure</p>
+          <h2 className="text-[#0f172a] text-[clamp(1.5rem,3vw,2.2rem)] font-light leading-snug mb-10"
             style={{ fontFamily: "'Playfair Display', serif" }}>
             One pair. Every sport.
           </h2>
