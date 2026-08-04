@@ -264,8 +264,11 @@ export default function GiveawayPage() {
             <div className="flex items-center gap-3 border-b border-[#e8e4df] pb-3 focus-within:border-[#0f172a] transition-colors duration-200">
               <CountryPicker value={countryCode} onChange={setCountryCode}/>
               <div className="w-px h-4 bg-[#e8e4df]"/>
-              <input type="tel" value={phone} onChange={e => setPhone(e.target.value)}
-                placeholder="9123 4567" required
+              <input type="tel" value={phone}
+                onChange={e => setPhone(e.target.value.replace(/\D/g, ""))}
+                placeholder={countryCode === "+65" ? "9123 4567" : "Phone number"}
+                maxLength={countryCode === "+65" ? 8 : 12}
+                inputMode="numeric"
                 className="bg-transparent text-[#0f172a] text-sm font-light placeholder:text-[#c0bbb5] focus:outline-none flex-1 min-w-0"/>
             </div>
           </div>
