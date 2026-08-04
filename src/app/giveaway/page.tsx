@@ -239,7 +239,7 @@ export default function GiveawayPage() {
           Safer sport, every time.
         </h2>
       </div>
-      <div className="max-w-3xl mx-auto px-6 pb-20">
+      <div className="max-w-3xl mx-auto px-6 pb-4">
         <div className="relative">
           <img src="/sunglasses.png" alt="Sporting Sunglasses" className="w-full h-auto object-contain"/>
           {/* Desktop/tablet: callouts on the photo, circle touching the lens */}
