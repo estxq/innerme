@@ -234,7 +234,6 @@ export default function GiveawayPage() {
 
       {/* Product highlight */}
       <div className="bg-[#FAF8F5] px-6 pt-16 pb-10 text-center">
-        <img src="/sunglasses.png" alt="Sporting Sunglasses" className="mx-auto w-full max-w-md object-contain drop-shadow-xl mb-8"/>
         <p className="text-xs tracking-[0.3em] text-[#9B6F55] uppercase mb-3">Built for every adventure</p>
         <h2 className="serif text-[clamp(1.5rem,3vw,2.2rem)] text-[#0f172a] font-light leading-snug">
           One pair. Every sport.
