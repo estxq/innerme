@@ -200,7 +200,7 @@ export default function GiveawayPage() {
         <h1 className="serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.15] text-white mb-0">
           Win a pair of<br /><em>Sporting Sunglasses.</em>
         </h1>
-        <img src="/sunglasses.png" alt="Sporting Sunglasses" className="specs-spin mx-auto w-full max-w-lg object-contain -mb-10 drop-shadow-2xl"/>
+        <img src="/sunglasses.png" alt="Sporting Sunglasses" className="mx-auto w-full max-w-lg object-contain -mb-10 drop-shadow-2xl"/>
 
         {/* Countdown */}
         <div className="flex justify-center gap-6 mb-2">
