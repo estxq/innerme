@@ -245,7 +245,7 @@ export default function GiveawayPage() {
           {/* Desktop/tablet: callouts on the photo, circle touching the lens */}
           {[
             { top: "34%", left: "40%", side: "left", title: "Impact Resistant", desc: "Shatterproof polycarbonate lens" },
-            { top: "31%", left: "45%", side: "right", title: "UV Protection", desc: "Filters harmful UV rays" },
+            { top: "36%", left: "43%", side: "right", title: "UV Protection", desc: "Filters harmful UV rays" },
             { top: "49%", left: "32%", side: "left", title: "Adjustable Nose Pads", desc: "Smooth, flexible fit — no pressure on the nose bridge" },
             { top: "58%", left: "50%", side: "right", title: "One-Piece Lens", desc: "Wider, clearer field of view" },
           ].map(c => c.side === "left" ? (
