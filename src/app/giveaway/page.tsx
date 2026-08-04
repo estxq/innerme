@@ -297,7 +297,7 @@ export default function GiveawayPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 min-h-[420px]">
         {[
           { img: "/sport-cycling.jpg", sport: "Cycling", desc: "UV protection at full speed.", pos: "object-[center_35%]" },
-          { img: "/sport-running.jpg", sport: "Running", desc: "Lightweight, sweat-proof fit.", pos: "object-center" },
+          { img: "/sport-running.jpg", sport: "Running", desc: "Lightweight, sweat-proof fit.", pos: "object-top" },
           { img: "/sport-hiking.jpg", sport: "Hiking", desc: "Polarised lenses for the trail.", pos: "object-top" },
         ].map(({ img, sport, desc, pos }) => (
           <div key={sport} className="relative overflow-hidden min-h-[320px] md:min-h-[420px]">
