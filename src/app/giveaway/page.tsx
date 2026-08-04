@@ -242,19 +242,35 @@ export default function GiveawayPage() {
       <div className="max-w-3xl mx-auto px-6 pb-20">
         <div className="relative">
           <img src="/sunglasses.png" alt="Sporting Sunglasses" className="w-full h-auto object-contain"/>
+          {/* Desktop/tablet: callouts on the photo, text to the left of each point */}
           {[
-            { top: "26%", left: "35%", title: "Impact Resistant", desc: "Shatterproof polycarbonate lens" },
-            { top: "34%", left: "50%", title: "UV Protection", desc: "Filters harmful UV rays" },
+            { top: "20%", left: "35%", title: "Impact Resistant", desc: "Shatterproof polycarbonate lens" },
+            { top: "38%", left: "50%", title: "UV Protection", desc: "Filters harmful UV rays" },
             { top: "45%", left: "24%", title: "Adjustable Nose Pads", desc: "Smooth, flexible fit — no pressure on the nose bridge" },
-            { top: "64%", left: "42%", title: "One-Piece Lens", desc: "Wider, clearer field of view" },
+            { top: "68%", left: "42%", title: "One-Piece Lens", desc: "Wider, clearer field of view" },
           ].map(c => (
-            <div key={c.title} className="absolute flex items-center" style={{ top: c.top, left: c.left }}>
-              <span className="w-2 h-2 rounded-full bg-white border border-[#0f172a] shrink-0"/>
-              <span className="h-px w-6 sm:w-14 bg-[#0f172a]/40 shrink-0"/>
-              <div className="ml-1.5 max-w-[7.5rem] sm:max-w-none">
-                <p className="text-[10px] sm:text-xs font-medium text-[#0f172a] leading-tight">{c.title}</p>
-                <p className="text-[9px] sm:text-[10px] text-[#9a9490] font-light leading-tight mt-0.5">{c.desc}</p>
+            <div key={c.title} className="hidden sm:flex absolute items-center" style={{ top: c.top, left: c.left, transform: "translateX(-100%)" }}>
+              <div className="mr-1.5 text-right max-w-[11rem]">
+                <p className="text-xs font-medium text-[#0f172a] leading-tight whitespace-nowrap">{c.title}</p>
+                <p className="text-[10px] text-[#9a9490] font-light leading-tight mt-0.5">{c.desc}</p>
               </div>
+              <span className="h-px w-10 md:w-14 bg-[#0f172a]/40 shrink-0"/>
+              <span className="w-2 h-2 rounded-full bg-white border border-[#0f172a] shrink-0"/>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile: simple stacked list below the photo */}
+        <div className="sm:hidden flex flex-col divide-y divide-[#e8e4df] mt-8">
+          {[
+            { title: "Impact Resistant", desc: "Shatterproof polycarbonate lens" },
+            { title: "UV Protection", desc: "Filters harmful UV rays" },
+            { title: "Adjustable Nose Pads", desc: "Smooth, flexible fit — no pressure on the nose bridge" },
+            { title: "One-Piece Lens", desc: "Wider, clearer field of view" },
+          ].map(f => (
+            <div key={f.title} className="py-4">
+              <p className="text-sm font-medium text-[#0f172a]">{f.title}</p>
+              <p className="text-xs text-[#9a9490] font-light mt-0.5">{f.desc}</p>
             </div>
           ))}
         </div>
