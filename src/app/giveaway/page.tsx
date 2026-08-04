@@ -229,9 +229,9 @@ export default function GiveawayPage() {
       </div>
 
       {/* Sport showcase */}
-      <div className="bg-[#8a6a2f]">
+      <div className="bg-[#0f172a]">
         <div className="max-w-6xl mx-auto px-6 pt-14 pb-4">
-          <p className="text-xs tracking-[0.3em] text-[#2a2013] uppercase mb-3">Built for every adventure</p>
+          <p className="text-xs tracking-[0.3em] text-[#c8a96e] uppercase mb-3">Built for every adventure</p>
           <h2 className="text-white text-[clamp(1.5rem,3vw,2.2rem)] font-light leading-snug mb-10"
             style={{ fontFamily: "'Playfair Display', serif" }}>
             One pair. Every sport.
@@ -255,12 +255,6 @@ export default function GiveawayPage() {
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="max-w-6xl mx-auto px-6 py-10">
-          <p className="text-[#f0e4cc] text-sm font-light leading-relaxed max-w-xl">
-            The Sporting Sunglasses are designed for people who don&apos;t stop. Whether you&apos;re on the road, the trail, or the track — they go where you go.
-          </p>
         </div>
       </div>
 
