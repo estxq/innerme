@@ -241,21 +241,27 @@ export default function GiveawayPage() {
         </h2>
       </div>
 
-      {/* Protection features */}
-      <div className="max-w-2xl mx-auto px-6 pb-16">
+      {/* Protection features — annotated on the product photo */}
+      <div className="max-w-xl mx-auto px-6 pb-20">
         <p className="text-xs tracking-[0.25em] text-[#9a9490] uppercase mb-2 text-center">Layered protection</p>
-        <h3 className="serif text-[clamp(1.25rem,2.5vw,1.75rem)] text-[#0f172a] font-light text-center mb-10">
+        <h3 className="serif text-[clamp(1.25rem,2.5vw,1.75rem)] text-[#0f172a] font-light text-center mb-12">
           Safer sport, every time.
         </h3>
-        <div className="flex flex-col divide-y divide-[#e8e4df]">
+
+        <div className="relative">
+          <img src="/sunglasses.png" alt="Sporting Sunglasses" className="w-full h-auto object-contain"/>
           {[
-            { title: "Impact Resistant", desc: "Polycarbonate lenses engineered to resist shattering. Lightweight, durable, wind and dust resistant." },
-            { title: "UV Protection", desc: "Effectively filters UV rays so you can enjoy your sport with full protection." },
-            { title: "One-Piece Lens", desc: "Integrated cut with HD coating for a wider, clearer field of view." },
-          ].map(f => (
-            <div key={f.title} className="flex items-start justify-between gap-6 py-5">
-              <p className="text-sm text-[#0f172a] font-medium shrink-0 w-40">{f.title}</p>
-              <p className="text-xs text-[#9a9490] font-light leading-relaxed text-right">{f.desc}</p>
+            { top: "20%", left: "18%", title: "Impact Resistant", desc: "Shatterproof polycarbonate lens" },
+            { top: "46%", left: "32%", title: "UV Protection", desc: "Filters harmful UV rays" },
+            { top: "70%", left: "44%", title: "One-Piece Lens", desc: "Wider, clearer field of view" },
+          ].map(c => (
+            <div key={c.title} className="absolute flex items-center" style={{ top: c.top, left: c.left }}>
+              <span className="w-2 h-2 rounded-full bg-white border border-[#0f172a] shrink-0"/>
+              <span className="h-px w-6 sm:w-14 bg-[#0f172a]/40 shrink-0"/>
+              <div className="ml-1.5 max-w-[7.5rem] sm:max-w-none">
+                <p className="text-[10px] sm:text-xs font-medium text-[#0f172a] leading-tight">{c.title}</p>
+                <p className="text-[9px] sm:text-[10px] text-[#9a9490] font-light leading-tight mt-0.5">{c.desc}</p>
+              </div>
             </div>
           ))}
         </div>
