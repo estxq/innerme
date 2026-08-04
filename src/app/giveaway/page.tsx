@@ -200,17 +200,21 @@ export default function GiveawayPage() {
         .specs-spin { animation: spin3d 4s linear infinite; transform-style: preserve-3d; }
       `}</style>
 
-      {/* Hero banner + sport showcase — one continuous dark block */}
-      <div className="bg-[#0f172a]">
-        <div className="px-6 pt-12 pb-8 text-center">
-          <p className="text-xs tracking-[0.3em] text-[#c8a96e] uppercase mb-4">InnerMe Gift</p>
-          <h1 className="serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.15] text-white mb-0">
+      {/* Hero — full-bleed photo, type overlaid directly on the image */}
+      <div className="relative min-h-[88vh] flex items-center justify-center text-center px-6 overflow-hidden">
+        <img src="/sport-hiking.jpg" alt="" className="absolute inset-0 w-full h-full object-cover object-top"/>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/70"/>
+        <div className="relative z-10 max-w-xl">
+          <p className="text-xs tracking-[0.35em] text-[#e8d4a8] uppercase mb-6">InnerMe Gift</p>
+          <h1 className="serif text-[clamp(2.25rem,6vw,4rem)] leading-[1.15] text-white mb-5">
             Win a pair of<br /><em>Sporting Sunglasses.</em>
           </h1>
-          <img src="/sunglasses.png" alt="Sporting Sunglasses" className="mx-auto w-full max-w-lg object-contain -mb-10 drop-shadow-2xl"/>
+          <p className="text-white/70 text-sm font-light tracking-wide mb-12">
+            Your next adventure deserves the right pair.
+          </p>
 
           {/* Countdown */}
-          <div className="flex justify-center gap-6 mb-2">
+          <div className="flex justify-center gap-8">
             {[
               { label: "Days", val: countdown.days },
               { label: "Hours", val: countdown.hours },
@@ -218,48 +222,46 @@ export default function GiveawayPage() {
               { label: "Seconds", val: countdown.seconds },
             ].map(({ label, val }) => (
               <div key={label} className="text-center">
-                <p className="serif text-[clamp(2rem,6vw,3.5rem)] leading-none text-white font-light">
+                <p className="serif text-[clamp(1.75rem,4vw,2.75rem)] leading-none text-white font-light">
                   {String(val).padStart(2, "0")}
                 </p>
-                <p className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase mt-3">{label}</p>
+                <p className="text-[10px] tracking-[0.25em] text-white/50 uppercase mt-2">{label}</p>
               </div>
             ))}
           </div>
         </div>
+      </div>
 
-        <div className="max-w-6xl mx-auto px-6 pt-16 pb-8 border-t border-white/10">
-          <p className="text-xs tracking-[0.3em] text-[#c8a96e] uppercase mb-3">Built for every adventure</p>
-          <h2 className="text-white text-[clamp(1.5rem,3vw,2.2rem)] font-light leading-snug mb-10"
-            style={{ fontFamily: "'Playfair Display', serif" }}>
-            One pair. Every sport.
-          </h2>
-        </div>
+      {/* Product highlight */}
+      <div className="bg-[#FAF8F5] px-6 pt-16 pb-10 text-center">
+        <img src="/sunglasses.png" alt="Sporting Sunglasses" className="mx-auto w-full max-w-md object-contain drop-shadow-xl mb-8"/>
+        <p className="text-xs tracking-[0.3em] text-[#9B6F55] uppercase mb-3">Built for every adventure</p>
+        <h2 className="serif text-[clamp(1.5rem,3vw,2.2rem)] text-[#0f172a] font-light leading-snug">
+          One pair. Every sport.
+        </h2>
+      </div>
 
-        {/* 3-column sport panels */}
-        <div className="grid grid-cols-1 md:grid-cols-3 min-h-[420px]">
-          {[
-            { img: "/sport-cycling.jpg", sport: "Cycling", desc: "UV protection at full speed.", pos: "object-top" },
-            { img: "/sport-running.jpg", sport: "Running", desc: "Lightweight, sweat-proof fit.", pos: "object-center" },
-            { img: "/sport-hiking.jpg", sport: "Hiking", desc: "Polarised lenses for the trail.", pos: "object-top" },
-          ].map(({ img, sport, desc, pos }) => (
-            <div key={sport} className="relative overflow-hidden min-h-[320px] md:min-h-[420px]">
-              <img src={img} alt={sport}
-                className={`absolute inset-0 w-full h-full object-cover ${pos}`}/>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"/>
-              <div className="absolute bottom-0 left-0 p-7">
-                <p className="text-[10px] tracking-[0.25em] text-[#c8a96e] uppercase mb-1">{desc}</p>
-                <p className="text-white text-xl font-medium tracking-wide">{sport}</p>
-              </div>
+      {/* 3-column sport panels */}
+      <div className="grid grid-cols-1 md:grid-cols-3 min-h-[420px]">
+        {[
+          { img: "/sport-cycling.jpg", sport: "Cycling", desc: "UV protection at full speed.", pos: "object-top" },
+          { img: "/sport-running.jpg", sport: "Running", desc: "Lightweight, sweat-proof fit.", pos: "object-center" },
+          { img: "/sport-hiking.jpg", sport: "Hiking", desc: "Polarised lenses for the trail.", pos: "object-top" },
+        ].map(({ img, sport, desc, pos }) => (
+          <div key={sport} className="relative overflow-hidden min-h-[320px] md:min-h-[420px]">
+            <img src={img} alt={sport}
+              className={`absolute inset-0 w-full h-full object-cover ${pos}`}/>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"/>
+            <div className="absolute bottom-0 left-0 p-7">
+              <p className="text-[10px] tracking-[0.25em] text-[#c8a96e] uppercase mb-1">{desc}</p>
+              <p className="text-white text-xl font-medium tracking-wide">{sport}</p>
             </div>
-          ))}
-        </div>
-
-        {/* Smooth fade from navy into the cream page background */}
-        <div className="h-20" style={{ background: "linear-gradient(to bottom, #0f172a, #FAF8F5)" }}/>
+          </div>
+        ))}
       </div>
 
       {/* How to win */}
-      <div className="max-w-2xl mx-auto px-6 pt-4 pb-10 border-b border-[#e8e4df]">
+      <div className="max-w-2xl mx-auto px-6 pt-16 pb-10 border-b border-[#e8e4df]">
         <p className="text-xs tracking-[0.25em] text-[#9a9490] uppercase mb-6">How to win</p>
         <div className="flex flex-col gap-5">
           {[
