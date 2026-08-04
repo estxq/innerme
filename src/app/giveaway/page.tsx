@@ -29,6 +29,7 @@ const COUNTRY_CODES = [
 ];
 
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyaBDJ8He8DH-jDQl0kDFa3sNYmYJ8_gFj2MA-ZDmh0sg9VvlehpP4Ti7LZpksq1lOR5w/exec";
+const DEADLINE = new Date("2026-08-31T23:59:00+08:00");
 
 function CountryPicker({ value, onChange }: { value: string; onChange: (code: string) => void }) {
   const [open, setOpen] = useState(false);
@@ -92,6 +93,25 @@ function CountryPicker({ value, onChange }: { value: string; onChange: (code: st
 }
 
 
+function useCountdown(target: Date) {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  useEffect(() => {
+    function tick() {
+      const diff = Math.max(0, target.getTime() - Date.now());
+      setTimeLeft({
+        days: Math.floor(diff / 86400000),
+        hours: Math.floor((diff % 86400000) / 3600000),
+        minutes: Math.floor((diff % 3600000) / 60000),
+        seconds: Math.floor((diff % 60000) / 1000),
+      });
+    }
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [target]);
+  return timeLeft;
+}
+
 export default function GiveawayPage() {
   const [name, setName] = useState("");
   const [countryCode, setCountryCode] = useState("+65");
@@ -103,6 +123,7 @@ export default function GiveawayPage() {
   const [phoneError, setPhoneError] = useState("");
   const [agreed, setAgreed] = useState(false);
 
+  const countdown = useCountdown(DEADLINE);
   const today = new Date().toISOString().split("T")[0];
   const timeSlots = [
     "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM",
@@ -176,6 +197,22 @@ export default function GiveawayPage() {
         </h1>
         <img src="/sunglasses.png" alt="Sporting Sunglasses" className="mx-auto w-full max-w-lg object-contain -mb-10 drop-shadow-2xl"/>
 
+        {/* Countdown */}
+        <div className="flex justify-center gap-6 mb-2">
+          {[
+            { label: "Days", val: countdown.days },
+            { label: "Hours", val: countdown.hours },
+            { label: "Minutes", val: countdown.minutes },
+            { label: "Seconds", val: countdown.seconds },
+          ].map(({ label, val }) => (
+            <div key={label} className="text-center">
+              <p className="serif text-[clamp(2rem,6vw,3.5rem)] leading-none text-white font-light">
+                {String(val).padStart(2, "0")}
+              </p>
+              <p className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase mt-1">{label}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* How to win */}
