@@ -16,10 +16,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={`${poppins.className} min-h-screen`}>
         {/* Global background */}
-        <div className="fixed inset-0 -z-10">
-          <img src="/magicpattern-oPH_5xuMgQw-unsplash.jpg" alt="" className="w-full h-full object-cover"/>
-          <div className="absolute inset-0 bg-[#FAF8F5]/50"/>
-        </div>
+        <div className="fixed inset-0 -z-10" style={{
+          background: `
+            radial-gradient(ellipse at 0% 60%, #FFD8C0 0%, transparent 50%),
+            radial-gradient(ellipse at 30% 0%, #F0C8D4 0%, transparent 50%),
+            radial-gradient(ellipse at 100% 100%, #8CCCE8 0%, transparent 55%),
+            radial-gradient(ellipse at 0% 100%, #FFF5DC 0%, transparent 45%),
+            #F5EEF0
+          `
+        }}/>
         <Navbar />
         <main>{children}</main>
 
