@@ -239,13 +239,13 @@ export default function GiveawayPage() {
         {/* 3-column sport panels */}
         <div className="grid grid-cols-1 md:grid-cols-3 min-h-[420px]">
           {[
-            { img: "/sport-cycling.jpg", sport: "Cycling", desc: "UV protection at full speed." },
-            { img: "/sport-running.jpg", sport: "Running", desc: "Lightweight, sweat-proof fit." },
-            { img: "/sport-hiking.jpg", sport: "Hiking", desc: "Polarised lenses for the trail." },
-          ].map(({ img, sport, desc }) => (
+            { img: "/sport-cycling.jpg", sport: "Cycling", desc: "UV protection at full speed.", pos: "object-top" },
+            { img: "/sport-running.jpg", sport: "Running", desc: "Lightweight, sweat-proof fit.", pos: "object-center" },
+            { img: "/sport-hiking.jpg", sport: "Hiking", desc: "Polarised lenses for the trail.", pos: "object-center" },
+          ].map(({ img, sport, desc, pos }) => (
             <div key={sport} className="relative overflow-hidden min-h-[320px] md:min-h-[420px]">
               <img src={img} alt={sport}
-                className="absolute inset-0 w-full h-full object-cover object-center"/>
+                className={`absolute inset-0 w-full h-full object-cover ${pos}`}/>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"/>
               <div className="absolute bottom-0 left-0 p-7">
                 <p className="text-[10px] tracking-[0.25em] text-[#c8a96e] uppercase mb-1">{desc}</p>
