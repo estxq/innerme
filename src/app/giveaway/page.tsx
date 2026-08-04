@@ -116,22 +116,22 @@ export default function GiveawayPage() {
   const [name, setName] = useState("");
   const [countryCode, setCountryCode] = useState("+65");
   const [phone, setPhone] = useState("");
-  const [bookingDate, setBookingDate] = useState("");
-  const [bookingTime, setBookingTime] = useState("");
+  const [age, setAge] = useState("");
+  const [residency, setResidency] = useState("");
+  const [savingsGoal, setSavingsGoal] = useState("");
+  const [financialGoals, setFinancialGoals] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [phoneError, setPhoneError] = useState("");
   const [agreed, setAgreed] = useState(false);
 
   const countdown = useCountdown(DEADLINE);
-  const today = new Date().toISOString().split("T")[0];
-  const timeSlots = [
-    "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM",
-    "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM",
-    "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM",
-    "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM",
-    "05:00 PM", "05:30 PM",
-  ];
+
+  function toggleGoal(goal: string) {
+    setFinancialGoals(prev =>
+      prev.includes(goal) ? prev.filter(g => g !== goal) : [...prev, goal]
+    );
+  }
   function validatePhone(code: string, num: string): string {
     const digits = num.replace(/\D/g, "");
     if (!digits) return "Please enter your phone number.";
@@ -148,8 +148,6 @@ export default function GiveawayPage() {
     if (!name.trim()) { setPhoneError("Please enter your name."); return; }
     const err = validatePhone(countryCode, phone);
     if (err) { setPhoneError(err); return; }
-    if (!bookingDate) { setPhoneError("Please select a preferred date."); return; }
-    if (!bookingTime) { setPhoneError("Please select a preferred time."); return; }
     if (!agreed) { setPhoneError("Please agree to the terms before submitting."); return; }
     setPhoneError("");
     setLoading(true);
@@ -157,7 +155,15 @@ export default function GiveawayPage() {
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST", mode: "no-cors",
         headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({ name, phone: `${countryCode.replace(/^\+/, "")} ${phone}`, bookingDate, bookingTime, source: "giveaway" }),
+        body: JSON.stringify({
+          name,
+          phone: `${countryCode.replace(/^\+/, "")} ${phone}`,
+          age,
+          residency,
+          savings_goal_2026: savingsGoal,
+          financial_goals: financialGoals.join(", "),
+          source: "giveaway",
+        }),
       });
     } catch {}
     setLoading(false);
@@ -264,20 +270,59 @@ export default function GiveawayPage() {
             </div>
           </div>
 
-          {/* Preferred booking date & time */}
+          {/* Age */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase">Preferred Session Date</label>
-            <input type="date" value={bookingDate} onChange={e => setBookingDate(e.target.value)} min={today} required
-              className="bg-transparent border-b border-[#e8e4df] pb-3 text-[#0f172a] text-sm font-light focus:outline-none focus:border-[#0f172a] transition-colors duration-200"/>
+            <label className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase">Age</label>
+            <input type="number" value={age} onChange={e => setAge(e.target.value)}
+              placeholder="e.g. 28" min="16" max="99"
+              className="bg-transparent border-b border-[#e8e4df] pb-3 text-[#0f172a] text-sm font-light placeholder:text-[#c0bbb5] focus:outline-none focus:border-[#0f172a] transition-colors duration-200"/>
           </div>
 
+          {/* Residency */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase">Preferred Session Time</label>
-            <select value={bookingTime} onChange={e => setBookingTime(e.target.value)} required
+            <label className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase">Residency</label>
+            <select value={residency} onChange={e => setResidency(e.target.value)}
               className="bg-transparent border-b border-[#e8e4df] pb-3 text-[#0f172a] text-sm font-light focus:outline-none focus:border-[#0f172a] transition-colors duration-200 appearance-none cursor-pointer">
-              <option value="" disabled>Select a time slot</option>
-              {timeSlots.map(t => <option key={t} value={t}>{t}</option>)}
+              <option value="" disabled>Select your residency status</option>
+              <option value="Singapore Citizen">Singapore Citizen</option>
+              <option value="Permanent Resident">Permanent Resident</option>
+              <option value="Employment Pass">Employment Pass</option>
+              <option value="S Pass">S Pass</option>
+              <option value="Dependent Pass">Dependent Pass</option>
+              <option value="Other">Other</option>
             </select>
+          </div>
+
+          {/* Savings goal 2026 */}
+          <div className="flex flex-col gap-3">
+            <label className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase">What is your savings goal in 2026?</label>
+            <div className="flex flex-col gap-2">
+              {["Less than S$500/month", "S$500 to S$1,000/month", "More than S$1,000/month"].map(opt => (
+                <label key={opt} className="flex items-center gap-3 cursor-pointer">
+                  <input type="radio" name="savingsGoal" value={opt} checked={savingsGoal === opt} onChange={() => setSavingsGoal(opt)}
+                    className="accent-[#0f172a] shrink-0"/>
+                  <span className="text-sm text-[#0f172a] font-light">{opt}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Financial goals (multi-select) */}
+          <div className="flex flex-col gap-3">
+            <label className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase">Which financial goals are important to you? <span className="normal-case">(Select all that apply)</span></label>
+            <div className="flex flex-col gap-2">
+              {[
+                "Growing wealth / create more income streams",
+                "Be ready against unexpected expenses",
+                "Plan for early retirement",
+              ].map(goal => (
+                <label key={goal} className="flex items-center gap-3 cursor-pointer">
+                  <input type="checkbox" checked={financialGoals.includes(goal)} onChange={() => toggleGoal(goal)}
+                    className="accent-[#0f172a] shrink-0"/>
+                  <span className="text-sm text-[#0f172a] font-light">{goal}</span>
+                </label>
+              ))}
+            </div>
           </div>
 
           {/* Consent box */}
