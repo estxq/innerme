@@ -18,11 +18,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Global background */}
         <div className="fixed inset-0 -z-10" style={{
           background: `
-            radial-gradient(ellipse at 0% 60%, #FFD8C0 0%, transparent 50%),
-            radial-gradient(ellipse at 30% 0%, #F0C8D4 0%, transparent 50%),
-            radial-gradient(ellipse at 100% 100%, #8CCCE8 0%, transparent 55%),
-            radial-gradient(ellipse at 0% 100%, #FFF5DC 0%, transparent 45%),
-            #F5EEF0
+            radial-gradient(ellipse at 0% 60%, rgba(255,216,192,0.5) 0%, transparent 50%),
+            radial-gradient(ellipse at 30% 0%, rgba(240,200,212,0.5) 0%, transparent 50%),
+            radial-gradient(ellipse at 100% 100%, rgba(140,204,232,0.5) 0%, transparent 55%),
+            radial-gradient(ellipse at 0% 100%, rgba(255,245,220,0.5) 0%, transparent 45%),
+            #FAF8F5
           `
         }}/>
         <Navbar />
