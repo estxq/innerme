@@ -226,6 +226,42 @@ export default function GiveawayPage() {
         </div>
       </div>
 
+      {/* Sport showcase */}
+      <div className="bg-[#0a0f1a]">
+        <div className="max-w-6xl mx-auto px-6 pt-14 pb-4">
+          <p className="text-xs tracking-[0.3em] text-[#c8a96e] uppercase mb-3">Built for every adventure</p>
+          <h2 className="text-white text-[clamp(1.5rem,3vw,2.2rem)] font-light leading-snug mb-10"
+            style={{ fontFamily: "'Playfair Display', serif" }}>
+            One pair. Every sport.
+          </h2>
+        </div>
+
+        {/* 3-column sport panels */}
+        <div className="grid grid-cols-1 md:grid-cols-3 min-h-[420px]">
+          {[
+            { img: "/sport-cycling.jpg", sport: "Cycling", desc: "UV protection at full speed." },
+            { img: "/sport-running.jpg", sport: "Running", desc: "Lightweight, sweat-proof fit." },
+            { img: "/sport-hiking.jpg", sport: "Hiking", desc: "Polarised lenses for the trail." },
+          ].map(({ img, sport, desc }) => (
+            <div key={sport} className="relative overflow-hidden min-h-[320px] md:min-h-[420px]">
+              <img src={img} alt={sport}
+                className="absolute inset-0 w-full h-full object-cover object-center"/>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"/>
+              <div className="absolute bottom-0 left-0 p-7">
+                <p className="text-[10px] tracking-[0.25em] text-[#c8a96e] uppercase mb-1">{desc}</p>
+                <p className="text-white text-xl font-medium tracking-wide">{sport}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="max-w-6xl mx-auto px-6 py-10">
+          <p className="text-[#9a9490] text-sm font-light leading-relaxed max-w-xl">
+            The Sporting Sunglasses are designed for people who don&apos;t stop. Whether you&apos;re on the road, the trail, or the track — they go where you go.
+          </p>
+        </div>
+      </div>
+
       {/* How to win */}
       <div className="max-w-2xl mx-auto px-6 py-10 border-b border-[#e8e4df]">
         <p className="text-xs tracking-[0.25em] text-[#9a9490] uppercase mb-6">How to win</p>
