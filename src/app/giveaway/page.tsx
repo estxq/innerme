@@ -242,11 +242,6 @@ export default function GiveawayPage() {
 
       {/* Protection features — annotated on the product photo */}
       <div className="max-w-xl mx-auto px-6 pb-20">
-        <p className="text-xs tracking-[0.25em] text-[#9a9490] uppercase mb-2 text-center">Layered protection</p>
-        <h3 className="serif text-[clamp(1.25rem,2.5vw,1.75rem)] text-[#0f172a] font-light text-center mb-12">
-          Safer sport, every time.
-        </h3>
-
         <div className="relative">
           <img src="/sunglasses.png" alt="Sporting Sunglasses" className="w-full h-auto object-contain"/>
           {[
