@@ -298,12 +298,11 @@ export default function GiveawayPage() {
         {[
           { img: "/sport-cycling.jpg", sport: "Cycling", desc: "UV protection at full speed.", pos: "object-[center_35%]" },
           { img: "/sport-running.jpg", sport: "Running", desc: "Lightweight, sweat-proof fit.", pos: "object-top" },
-          { img: "/sport-hiking-2.jpg", sport: "Hiking", desc: "Polarised lenses for the trail.", pos: "object-top" },
+          { img: "/sport-outdoor.jpg", sport: "Hiking", desc: "Polarised lenses for the trail.", pos: "object-top" },
         ].map(({ img, sport, desc, pos }) => (
           <div key={sport} className="relative overflow-hidden min-h-[320px] md:min-h-[420px]">
             <img src={img} alt={sport}
-              className={`absolute inset-0 w-full h-full object-cover ${pos}`}
-              style={sport === "Hiking" ? { transform: "scale(1.3)", transformOrigin: "50% 15%" } : undefined}/>
+              className={`absolute inset-0 w-full h-full object-cover ${pos}`}/>
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"/>
             <div className="absolute bottom-0 left-0 p-7">
               <p className="text-[10px] tracking-[0.25em] text-[#c8a96e] uppercase mb-1">{desc}</p>
