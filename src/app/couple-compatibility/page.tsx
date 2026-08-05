@@ -185,6 +185,22 @@ const quizData = [
 ];
 
 const letters = ["A", "B", "C", "D"];
+
+const quizFieldKeys = [
+  "disagree_purchase", "handle_money", "talk_finances", "planning_holiday",
+  "partner_big_purchase", "savings_approach", "big_life_decisions",
+  "partner_earn_spend", "lost_income", "shared_dream",
+];
+
+function buildAnswerFields(answersObj: Record<number, string>, prefix: "a" | "b") {
+  const fields: Record<string, string> = {};
+  quizFieldKeys.forEach((key, i) => {
+    const letter = answersObj[i];
+    fields[`${prefix}_q${i + 1}_${key}`] = letter ? quizData[i].opts[letters.indexOf(letter)] : "";
+  });
+  return fields;
+}
+
 type PersonalityType = "planner" | "independent" | "balancer" | "drifter";
 type GenderType = "male" | "female";
 const letterToType: Record<string, PersonalityType> = { A: "planner", B: "independent", C: "balancer", D: "drifter" };
@@ -457,7 +473,11 @@ function CouplesQuiz() {
       fetch("https://script.google.com/macros/s/AKfycbyaBDJ8He8DH-jDQl0kDFa3sNYmYJ8_gFj2MA-ZDmh0sg9VvlehpP4Ti7LZpksq1lOR5w/exec", {
         method: "POST", mode: "no-cors",
         headers: { "Content-Type": "text/plain" },
-        body: JSON.stringify({ name, phone: `${countryCode.replace(/^\+/, "")} ${phone}`, gender, ageRange, source: "couples", role: "partner-a" }),
+        body: JSON.stringify({
+          name, phone: `${countryCode.replace(/^\+/, "")} ${phone}`, gender, ageRange,
+          source: "couples", role: "partner-a",
+          ...buildAnswerFields(answers, "a"),
+        }),
       }).catch(() => {});
       setStage("share");
     } else {
@@ -473,6 +493,9 @@ function CouplesQuiz() {
           phone: `${partnerAData!.name}: (Partner A) | ${name}: ${countryCode.replace(/^\+/, "")} ${phone}`,
           result: pairing.name,
           source: "couples",
+          role: "partner-b",
+          ...buildAnswerFields(partnerAData!.answers, "a"),
+          ...buildAnswerFields(answers, "b"),
         }),
       }).catch(() => {});
       setResult({ typeA, typeB, pairing, nameB: name, genderB: gender });
