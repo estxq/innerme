@@ -296,14 +296,14 @@ export default function GiveawayPage() {
       {/* 3-column sport panels */}
       <div className="grid grid-cols-1 md:grid-cols-3 min-h-[420px]">
         {[
-          { img: "/sport-cycling.jpg", sport: "Cycling", desc: "UV protection at full speed.", pos: "object-[center_25%]", scale: "scale(1.15)" },
-          { img: "/sport-outdoor.jpg", sport: "Outdoor Sports", desc: "Sharp focus, every match.", pos: "object-top", scale: undefined },
-          { img: "/sport-running.jpg", sport: "Running", desc: "Lightweight, sweat-proof fit.", pos: "object-top", scale: undefined },
-        ].map(({ img, sport, desc, pos, scale }) => (
+          { img: "/sport-cycling.jpg", sport: "Cycling", desc: "UV protection at full speed.", pos: "object-[center_25%]", scale: "scale(1.35)", origin: "50% 0%" },
+          { img: "/sport-outdoor.jpg", sport: "Outdoor Sports", desc: "Sharp focus, every match.", pos: "object-top", scale: undefined, origin: undefined },
+          { img: "/sport-running.jpg", sport: "Running", desc: "Lightweight, sweat-proof fit.", pos: "object-top", scale: undefined, origin: undefined },
+        ].map(({ img, sport, desc, pos, scale, origin }) => (
           <div key={sport} className="relative overflow-hidden min-h-[320px] md:min-h-[420px]">
             <img src={img} alt={sport}
               className={`absolute inset-0 w-full h-full object-cover ${pos}`}
-              style={scale ? { transform: scale, transformOrigin: "50% 100%" } : undefined}/>
+              style={scale ? { transform: scale, transformOrigin: origin ?? "50% 100%" } : undefined}/>
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"/>
             <div className="absolute bottom-0 left-0 p-7">
               <p className="text-[10px] tracking-[0.25em] text-[#c8a96e] uppercase mb-1">{desc}</p>
