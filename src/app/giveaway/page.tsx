@@ -296,7 +296,7 @@ export default function GiveawayPage() {
       {/* 3-column sport panels */}
       <div className="grid grid-cols-1 md:grid-cols-3 min-h-[420px]">
         {[
-          { img: "/sport-cycling.jpg", sport: "Cycling", desc: "UV protection at full speed.", pos: "object-[center_35%]", scale: "scale(1.15)" },
+          { img: "/sport-cycling.jpg", sport: "Cycling", desc: "UV protection at full speed.", pos: "object-[center_25%]", scale: "scale(1.15)" },
           { img: "/sport-outdoor.jpg", sport: "Outdoor Sports", desc: "Sharp focus, every match.", pos: "object-top", scale: undefined },
           { img: "/sport-running.jpg", sport: "Running", desc: "Lightweight, sweat-proof fit.", pos: "object-top", scale: undefined },
         ].map(({ img, sport, desc, pos, scale }) => (
