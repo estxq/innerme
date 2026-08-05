@@ -297,13 +297,13 @@ export default function GiveawayPage() {
       <div className="grid grid-cols-1 md:grid-cols-3 min-h-[420px]">
         {[
           { img: "/sport-cycling.jpg", sport: "Cycling", desc: "UV protection at full speed.", pos: "object-[center_35%]", scale: undefined },
-          { img: "/sport-outdoor.jpg", sport: "Outdoor Sports", desc: "Sharp focus, every match.", pos: "object-top", scale: "scale(1.3)" },
-          { img: "/sport-running.jpg", sport: "Running", desc: "Lightweight, sweat-proof fit.", pos: "object-top", scale: "scale(1.25)" },
+          { img: "/sport-outdoor.jpg", sport: "Outdoor Sports", desc: "Sharp focus, every match.", pos: "object-top", scale: "scale(1.5)" },
+          { img: "/sport-running.jpg", sport: "Running", desc: "Lightweight, sweat-proof fit.", pos: "object-top", scale: "scale(1.35)" },
         ].map(({ img, sport, desc, pos, scale }) => (
           <div key={sport} className="relative overflow-hidden min-h-[320px] md:min-h-[420px]">
             <img src={img} alt={sport}
               className={`absolute inset-0 w-full h-full object-cover ${pos}`}
-              style={scale ? { transform: scale, transformOrigin: "50% 0%" } : undefined}/>
+              style={scale ? { transform: scale, transformOrigin: "50% 100%" } : undefined}/>
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"/>
             <div className="absolute bottom-0 left-0 p-7">
               <p className="text-[10px] tracking-[0.25em] text-[#c8a96e] uppercase mb-1">{desc}</p>
