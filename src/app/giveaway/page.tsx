@@ -244,9 +244,9 @@ export default function GiveawayPage() {
           <img src="/sunglasses.png" alt="Sporting Sunglasses" className="w-full h-auto object-contain"/>
           {/* Desktop/tablet: callouts on the photo, circle touching the lens */}
           {[
-            { top: "34%", left: "40%", side: "left", title: "Impact Resistant", desc: "Shatterproof polycarbonate lens" },
+            { top: "34%", left: "37%", side: "left", title: "Impact Resistant", desc: "Shatterproof polycarbonate lens" },
             { top: "36%", left: "43%", side: "right", title: "UV Protection", desc: "Filters harmful UV rays" },
-            { top: "49%", left: "32%", side: "left", title: "Adjustable Nose Pads", desc: "Smooth, flexible fit — no pressure on the nose bridge" },
+            { top: "49%", left: "32%", side: "left", title: "Adjustable Nose Pads", desc: "Smooth, flexible fit that avoids pressure on the nose bridge" },
             { top: "58%", left: "50%", side: "right", title: "One-Piece Lens", desc: "Wider, clearer field of view" },
           ].map(c => c.side === "left" ? (
             <div key={c.title} className="hidden sm:flex absolute items-center" style={{ top: c.top, left: c.left, transform: "translateX(-100%)" }}>
@@ -274,7 +274,7 @@ export default function GiveawayPage() {
           {[
             { title: "Impact Resistant", desc: "Shatterproof polycarbonate lens" },
             { title: "UV Protection", desc: "Filters harmful UV rays" },
-            { title: "Adjustable Nose Pads", desc: "Smooth, flexible fit — no pressure on the nose bridge" },
+            { title: "Adjustable Nose Pads", desc: "Smooth, flexible fit that avoids pressure on the nose bridge" },
             { title: "One-Piece Lens", desc: "Wider, clearer field of view" },
           ].map(f => (
             <div key={f.title} className="py-4">
