@@ -192,11 +192,11 @@ const quizFieldKeys = [
   "partner_earn_spend", "lost_income", "shared_dream",
 ];
 
-function buildAnswerFields(answersObj: Record<number, string>, prefix: "a" | "b") {
+function buildAnswerFields(answersObj: Record<number, string>) {
   const fields: Record<string, string> = {};
   quizFieldKeys.forEach((key, i) => {
     const letter = answersObj[i];
-    fields[`${prefix}_q${i + 1}_${key}`] = letter ? quizData[i].opts[letters.indexOf(letter)] : "";
+    fields[`q${i + 1}_${key}`] = letter ? quizData[i].opts[letters.indexOf(letter)] : "";
   });
   return fields;
 }
@@ -476,7 +476,7 @@ function CouplesQuiz() {
         body: JSON.stringify({
           name, phone: `${countryCode.replace(/^\+/, "")} ${phone}`, gender, ageRange,
           source: "couples", role: "partner-a",
-          ...buildAnswerFields(answers, "a"),
+          ...buildAnswerFields(answers),
         }),
       }).catch(() => {});
       setStage("share");
@@ -489,13 +489,12 @@ function CouplesQuiz() {
         method: "POST", mode: "no-cors",
         headers: { "Content-Type": "text/plain" },
         body: JSON.stringify({
-          name: `${partnerAData!.name} & ${name}`,
-          phone: `${partnerAData!.name}: (Partner A) | ${name}: ${countryCode.replace(/^\+/, "")} ${phone}`,
+          name, phone: `${countryCode.replace(/^\+/, "")} ${phone}`, gender, ageRange,
           result: pairing.name,
           source: "couples",
           role: "partner-b",
-          ...buildAnswerFields(partnerAData!.answers, "a"),
-          ...buildAnswerFields(answers, "b"),
+          partnerName: partnerAData!.name,
+          ...buildAnswerFields(answers),
         }),
       }).catch(() => {});
       setResult({ typeA, typeB, pairing, nameB: name, genderB: gender });
