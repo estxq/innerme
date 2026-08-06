@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import LensTintSlider from "@/components/LensTintSlider";
 
 const COUNTRY_CODES = [
   { code: "+65", flag: "🇸🇬", name: "Singapore" },
@@ -283,6 +284,15 @@ export default function GiveawayPage() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Lens tint demo */}
+      <div className="bg-[#FAF8F5] px-6 pb-16 text-center">
+        <p className="text-xs tracking-[0.25em] text-[#9a9490] uppercase mb-2">Photochromic lens</p>
+        <h3 className="serif text-[clamp(1.25rem,2.5vw,1.75rem)] text-[#0f172a] font-light mb-10">
+          Adapts to the light, automatically.
+        </h3>
+        <LensTintSlider />
       </div>
 
       {/* Sport panels intro */}
