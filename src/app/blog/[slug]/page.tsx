@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { client } from "@/sanity/lib/client";
 import { postBySlugQuery, allSlugsQuery } from "@/sanity/lib/queries";
@@ -113,12 +112,8 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
       `}</style>
 
       <div className="max-w-2xl mx-auto px-6 py-16">
-        <Link href="/blog" className="text-xs tracking-[0.2em] text-[#9a9490] uppercase hover:text-[#0f172a] transition-colors">
-          ← Back to Blog
-        </Link>
-
         {post.publishedAt ? (
-          <p className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase mt-8 mb-3">
+          <p className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase mb-3">
             {new Date(post.publishedAt).toLocaleDateString("en-SG", { day: "numeric", month: "long", year: "numeric" })}
           </p>
         ) : null}
