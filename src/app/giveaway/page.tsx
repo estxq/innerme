@@ -284,8 +284,8 @@ export default function GiveawayPage() {
             className="w-full accent-[#0f172a]"
           />
           <div className="flex justify-between text-[10px] text-[#9a9490] mt-2 uppercase tracking-[0.15em]">
-            <span>Cloudy</span>
-            <span>Sunny</span>
+            <span>Transparent</span>
+            <span>Purple</span>
           </div>
         </div>
 
