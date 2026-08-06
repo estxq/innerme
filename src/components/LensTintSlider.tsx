@@ -4,21 +4,28 @@ import { useState } from "react";
 export default function LensTintSlider() {
   const [value, setValue] = useState(0); // 0 = clear, 100 = dark
 
+  const cloudyOpacity = value <= 50 ? value / 50 : 1;
+  const sunnyOpacity = value <= 50 ? 0 : (value - 50) / 50;
+
   return (
     <div className="max-w-md mx-auto text-center">
-      <div className="relative w-full aspect-[264/123]">
-        {/* Base layer: clear lens */}
+      <div className="relative w-full aspect-[738/443]">
         <img
-          src="/sunglasses-indoor-aligned.png"
+          src="/sunglasses-tint-indoor.png"
           alt="Sunglasses, clear lens"
           className="absolute inset-0 w-full h-full object-contain"
         />
-        {/* Top layer: dark lens, faded in as the slider increases */}
         <img
-          src="/sunglasses-sunny-aligned.png"
+          src="/sunglasses-tint-cloudy.png"
+          alt="Sunglasses, medium tint lens"
+          className="absolute inset-0 w-full h-full object-contain"
+          style={{ opacity: cloudyOpacity }}
+        />
+        <img
+          src="/sunglasses-tint-sunny.png"
           alt="Sunglasses, dark lens"
-          className="absolute inset-0 w-full h-full object-contain transition-opacity duration-75"
-          style={{ opacity: value / 100 }}
+          className="absolute inset-0 w-full h-full object-contain"
+          style={{ opacity: sunnyOpacity }}
         />
       </div>
 
