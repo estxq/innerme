@@ -124,7 +124,7 @@ export default function GiveawayPage() {
   const [loading, setLoading] = useState(false);
   const [phoneError, setPhoneError] = useState("");
   const [agreed, setAgreed] = useState(false);
-  const [lensTint, setLensTint] = useState(0); // 0 = transparent, 100 = full purple
+  const [lensTint, setLensTint] = useState(100); // 0 = transparent, 100 = full purple
 
   const countdown = useCountdown(DEADLINE);
 
