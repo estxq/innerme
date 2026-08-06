@@ -7,7 +7,7 @@ import { urlFor } from "@/sanity/lib/image";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Blog | InnerMe",
+  title: "Blog",
   description: "Financial personality insights, money tips, and guides from InnerMe.",
 };
 

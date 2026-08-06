@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Lucky Draw",
+  robots: { index: false, follow: true },
+};
+
 export default function LuckyDrawPage() {
   return (
     <div className="min-h-[calc(100dvh-57px)] flex items-center justify-center px-6 pb-16"

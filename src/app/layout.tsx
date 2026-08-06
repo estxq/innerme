@@ -7,8 +7,11 @@ import Navbar from "@/components/Navbar";
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600", "700", "800"] });
 
 export const metadata: Metadata = {
-  title: "innerme",
-  description: "Discover your financial personality",
+  title: {
+    default: "InnerMe | Discover Your Financial Personality",
+    template: "%s | InnerMe",
+  },
+  description: "Take our free quiz to uncover your financial personality type and get personalized money tips to help you save, invest, and grow smarter.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

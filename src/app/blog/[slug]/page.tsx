@@ -5,6 +5,8 @@ import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { client } from "@/sanity/lib/client";
 import { postBySlugQuery, allSlugsQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
+import VideoEmbed from "@/components/VideoEmbed";
+import { resolveVideosInBody, type ResolvedVideo } from "@/lib/video";
 
 export const revalidate = 60;
 
@@ -32,7 +34,7 @@ export async function generateMetadata(props: {
   const ogImage = post.coverImage ? urlFor(post.coverImage).width(1200).height(630).url() : undefined;
 
   return {
-    title: `${post.title} | InnerMe`,
+    title: post.title,
     description: post.seoDescription,
     openGraph: {
       title: post.title,
@@ -43,7 +45,11 @@ export async function generateMetadata(props: {
   };
 }
 
-const portableTextComponents: PortableTextComponents = {
+// Videos are resolved (thumbnail, title) on the server before rendering, then
+// passed in here as a lookup — PortableText renderers can't be async.
+const buildPortableTextComponents = (
+  videos: Record<string, ResolvedVideo>,
+): PortableTextComponents => ({
   types: {
     image: ({ value }) => (
       // eslint-disable-next-line @next/next/no-img-element
@@ -53,6 +59,11 @@ const portableTextComponents: PortableTextComponents = {
         className="w-full h-auto my-8"
       />
     ),
+    videoEmbed: ({ value }) => {
+      const video = videos[value?._key];
+      if (!video) return null;
+      return <VideoEmbed video={video} caption={value?.caption} />;
+    },
   },
   marks: {
     link: ({ children, value }) => (
@@ -84,13 +95,16 @@ const portableTextComponents: PortableTextComponents = {
     bullet: ({ children }) => <ul className="list-disc pl-5 mb-5 space-y-1.5 text-[15px] text-[#4a4540] font-light">{children}</ul>,
     number: ({ children }) => <ol className="list-decimal pl-5 mb-5 space-y-1.5 text-[15px] text-[#4a4540] font-light">{children}</ol>,
   },
-};
+});
 
 export default async function BlogPostPage(props: { params: Promise<{ slug: string }> }) {
   const { slug } = await props.params;
   const post: Post | null = await client.fetch(postBySlugQuery, { slug });
 
   if (!post) notFound();
+
+  const videos = await resolveVideosInBody(post.body);
+  const portableTextComponents = buildPortableTextComponents(videos);
 
   return (
     <div className="min-h-[calc(100dvh-57px)] bg-[#FAF8F5]" style={{ fontFamily: "'Inter', sans-serif" }}>
