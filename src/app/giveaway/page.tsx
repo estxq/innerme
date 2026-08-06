@@ -125,6 +125,7 @@ export default function GiveawayPage() {
   const [loading, setLoading] = useState(false);
   const [phoneError, setPhoneError] = useState("");
   const [agreed, setAgreed] = useState(false);
+  const [lensTint, setLensTint] = useState(0); // 0 = transparent, 100 = full purple
 
   const countdown = useCountdown(DEADLINE);
 
@@ -242,7 +243,10 @@ export default function GiveawayPage() {
       </div>
       <div className="max-w-3xl mx-auto px-6 pb-4">
         <div className="relative">
-          <img src="/sunglasses.png" alt="Sporting Sunglasses" className="w-full h-auto object-contain"/>
+          <img src="/sunglasses-clear.png" alt="Sporting Sunglasses" className="w-full h-auto object-contain"/>
+          <img src="/sunglasses.png" alt="" aria-hidden="true"
+            className="absolute inset-0 w-full h-auto object-contain"
+            style={{ opacity: lensTint / 100 }}/>
           {/* Desktop/tablet: callouts on the photo, circle touching the lens */}
           {[
             { top: "34%", left: "37%", side: "left", title: "Impact Resistant", desc: "Shatterproof polycarbonate lens" },
@@ -268,6 +272,22 @@ export default function GiveawayPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Lens colour slider: transparent to full purple tint */}
+        <div className="max-w-xs mx-auto mt-8">
+          <input
+            type="range"
+            min={0}
+            max={100}
+            value={lensTint}
+            onChange={(e) => setLensTint(Number(e.target.value))}
+            className="w-full accent-[#0f172a]"
+          />
+          <div className="flex justify-between text-[10px] text-[#9a9490] mt-2 uppercase tracking-[0.15em]">
+            <span>Transparent</span>
+            <span>Purple</span>
+          </div>
         </div>
 
         {/* Mobile: simple stacked list below the photo */}
