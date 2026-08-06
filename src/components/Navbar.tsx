@@ -8,6 +8,7 @@ const links = [
   { href: "/couple-compatibility", label: "Couple Compatibility" },
   { href: "/lucky-draw", label: "Lucky Draw" },
   { href: "/giveaway", label: "Giveaway" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export default function Navbar() {
