@@ -82,6 +82,16 @@ export default function VideoEmbed({ video, caption }: Props) {
                 alt=""
                 loading="lazy"
                 onError={() => setThumbFailed(true)}
+                onLoad={(e) => {
+                  // When maxresdefault doesn't exist, YouTube returns a real
+                  // (non-erroring) 120x90 grey placeholder instead of a 404 —
+                  // catch that case and fall back to hqdefault, which is
+                  // generated for virtually every video.
+                  const img = e.currentTarget;
+                  if (img.naturalWidth <= 120 && img.naturalHeight <= 90) {
+                    setThumbFailed(true);
+                  }
+                }}
                 className="h-full w-full object-cover"
               />
             ) : null}
