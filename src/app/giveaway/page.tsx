@@ -274,7 +274,7 @@ export default function GiveawayPage() {
         </div>
 
         {/* Lens colour slider: transparent to full purple tint */}
-        <div className="max-w-xs mx-auto mt-8">
+        <div className="max-w-xs mx-auto mt-2 mb-10">
           <input
             type="range"
             min={0}
@@ -306,7 +306,7 @@ export default function GiveawayPage() {
       </div>
 
       {/* Sport panels intro */}
-      <div className="bg-[#FAF8F5] px-6 pt-4 pb-10 text-center">
+      <div className="bg-[#FAF8F5] px-6 pt-10 pb-10 text-center">
         <p className="text-xs tracking-[0.3em] text-[#9B6F55] uppercase mb-3">Built for every adventure</p>
         <h2 className="serif text-[clamp(1.5rem,3vw,2.2rem)] text-[#0f172a] font-light leading-snug">
           One pair. Every sport.
