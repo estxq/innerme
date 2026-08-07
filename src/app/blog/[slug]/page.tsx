@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { client } from "@/sanity/lib/client";
 import { postBySlugQuery, allSlugsQuery } from "@/sanity/lib/queries";
@@ -136,6 +137,23 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
             <PortableText value={post.body as never} components={portableTextComponents} />
           </div>
         ) : null}
+
+        <div className="mt-16 bg-[#0f172a] px-8 py-10 text-center">
+          <p className="text-xs tracking-[0.25em] text-[#c8a96e] uppercase mb-3">Before you go</p>
+          <h2 className="serif text-[clamp(1.25rem,3vw,1.75rem)] leading-snug text-white mb-8">
+            What&apos;s your financial personality?
+          </h2>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link href="/financial-persona"
+              className="inline-flex items-center gap-2 bg-white text-[#0f172a] px-6 py-3 text-xs tracking-[0.12em] uppercase hover:bg-[#f0ece8] transition-colors duration-300">
+              Take the Quiz
+            </Link>
+            <Link href="/giveaway"
+              className="inline-flex items-center gap-2 border border-white/30 text-white px-6 py-3 text-xs tracking-[0.12em] uppercase hover:border-white transition-colors duration-300">
+              Win Sporting Sunglasses
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
