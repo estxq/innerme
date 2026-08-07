@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 const quizLinks = [
   { href: "/financial-persona", label: "Financial Persona" },
   { href: "/couple-compatibility", label: "Couple Compatibility" },
+  { href: "/local-food", label: "Local Food" },
 ];
 
 const links = [
