@@ -797,9 +797,33 @@ function CouplesQuiz() {
                 </div>
               </div>
 
-              <p className="text-xs text-[#c0bbb5] leading-relaxed">
+              <p className="text-xs text-[#c0bbb5] leading-relaxed mb-8">
                 Compatibility isn&apos;t fixed. It&apos;s built through honest conversations and small, consistent actions together.
               </p>
+
+              <button
+                onClick={async () => {
+                  const text = `We're ${result.pairing.pct}% compatible — ${result.pairing.name}! 💑 Find out your own money compatibility with InnerMe's free couple's quiz →`;
+                  const url = "https://www.innerme.sg/couple-compatibility";
+                  if (navigator.share) {
+                    try {
+                      await navigator.share({ text, url });
+                    } catch {
+                      // user cancelled the share sheet — no action needed
+                    }
+                  } else {
+                    navigator.clipboard.writeText(`${text} ${url}`);
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 2000);
+                  }
+                }}
+                className="flex items-center gap-2 text-xs tracking-[0.2em] text-[#9a9490] uppercase hover:text-[#0f172a] transition-colors cursor-pointer bg-transparent border-none">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M6 10.5a.5.5 0 0 1-.5-.5V4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-.5.5H6z" stroke="currentColor" strokeWidth="1.2"/>
+                  <path d="M4 5.5H3.5A1.5 1.5 0 0 0 2 7v5.5A1.5 1.5 0 0 0 3.5 14H9a1.5 1.5 0 0 0 1.5-1.5V12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+                </svg>
+                {copied ? "Copied!" : "Share our result"}
+              </button>
             </motion.div>
           )}
 
