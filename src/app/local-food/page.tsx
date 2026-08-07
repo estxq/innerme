@@ -189,7 +189,7 @@ const quizData = [
 
 const letters = ["A", "B", "C", "D"];
 
-type FoodKey = "chickenrice" | "steamboat" | "chillicrab" | "kayatoast";
+type FoodKey = "chickenrice" | "bakkutteh" | "chillicrab" | "kayatoast";
 
 const foods: Record<FoodKey, {
   name: string;
@@ -206,17 +206,17 @@ const foods: Record<FoodKey, {
     subtitle: "Reliable, timeless, quietly excellent.",
     desc: "You don't need to shout to be the best. You're the one everyone can count on, the safe choice that never disappoints. There's nothing flashy about you, and that's exactly the point. Done properly, simple beats complicated every single time.",
     traits: ["Consistent", "Trustworthy", "Understated", "Quietly confident"],
-    pairsWith: "Steamboat — they bring the crowd, you bring the standard.",
+    pairsWith: "Bak Kut Teh — they bring the warmth, you bring the standard.",
     moneyTie: "You likely value stability and doing things properly. Steady beats flashy.",
   },
-  steamboat: {
-    name: "Steamboat",
+  bakkutteh: {
+    name: "Bak Kut Teh",
     emoji: "🍲",
     subtitle: "Warm, generous, better with people.",
-    desc: "You're happiest when everyone's around the table. You bring people together without even trying, and you'd rather share a big meal with good company than eat the best food alone. Community over everything.",
-    traits: ["Generous", "Social", "Inclusive", "Warm"],
-    pairsWith: "Chicken Rice — you gather everyone, they keep it grounded.",
-    moneyTie: "You probably spend on experiences and people. Money is for sharing.",
+    desc: "You're happiest when everyone's around the table, soup refilled, nobody in a rush to leave. You look after people without making a show of it, and you'd rather share a hearty meal with good company than eat the fanciest thing alone. Comfort and community over everything.",
+    traits: ["Generous", "Nurturing", "Down-to-earth", "Warm"],
+    pairsWith: "Chicken Rice — you look after everyone, they keep it grounded.",
+    moneyTie: "You probably spend on people and experiences. Money is for sharing.",
   },
   chillicrab: {
     name: "Chilli Crab",
@@ -240,7 +240,7 @@ const foods: Record<FoodKey, {
 
 const letterToFood: Record<string, FoodKey> = {
   A: "chickenrice",
-  B: "steamboat",
+  B: "bakkutteh",
   C: "chillicrab",
   D: "kayatoast",
 };
