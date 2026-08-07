@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect, Suspense, type JSX } from "react";
 import { useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { trackEvent } from "@/lib/fbq";
 
 const COUNTRY_CODES = [
   { code: "+65", flag: "🇸🇬", name: "Singapore" },
@@ -479,6 +480,7 @@ function CouplesQuiz() {
           ...buildAnswerFields(answers),
         }),
       }).catch(() => {});
+      trackEvent("Lead", { content_name: "Couple Compatibility Quiz", content_category: "Partner A" });
       setStage("share");
     } else {
       const typeA = getPersonality(partnerAData!.answers);
@@ -497,6 +499,7 @@ function CouplesQuiz() {
           ...buildAnswerFields(answers),
         }),
       }).catch(() => {});
+      trackEvent("Lead", { content_name: "Couple Compatibility Quiz", content_category: "Partner B" });
       setResult({ typeA, typeB, pairing, nameB: name, genderB: gender });
       setStage("result");
     }

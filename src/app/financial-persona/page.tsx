@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { trackEvent } from "@/lib/fbq";
 
 const COUNTRY_CODES = [
   { code: "+65", flag: "🇸🇬", name: "Singapore" },
@@ -277,6 +278,7 @@ export default function QuizPage() {
       }),
     }).catch(() => {});
 
+    trackEvent("Lead", { content_name: "Financial Persona Quiz", content_category: p.name });
     setResult(tier);
     setDirection(1);
     setStage("result");

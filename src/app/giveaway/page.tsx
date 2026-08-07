@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import { trackEvent } from "@/lib/fbq";
 
 const COUNTRY_CODES = [
   { code: "+65", flag: "🇸🇬", name: "Singapore" },
@@ -167,6 +168,7 @@ export default function GiveawayPage() {
         }),
       });
     } catch {}
+    trackEvent("Lead", { content_name: "Giveaway Entry" });
     setLoading(false);
     setSubmitted(true);
   }
