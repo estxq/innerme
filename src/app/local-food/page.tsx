@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { trackEvent } from "@/lib/fbq";
 
@@ -191,9 +192,13 @@ const letters = ["A", "B", "C", "D"];
 
 type FoodKey = "chickenrice" | "bakkutteh" | "chillicrab" | "kayatoast";
 
+/** All four figurine PNGs are square at this intrinsic size. */
+const FIGURINE_SIZE = 512;
+
 const foods: Record<FoodKey, {
   name: string;
   emoji: string;
+  img: string;
   subtitle: string;
   desc: string;
   traits: string[];
@@ -203,6 +208,7 @@ const foods: Record<FoodKey, {
   chickenrice: {
     name: "Chicken Rice",
     emoji: "🍚",
+    img: "/chickenrice-figurine.png",
     subtitle: "Reliable, timeless, quietly excellent.",
     desc: "You don't need to shout to be the best. You're the one everyone can count on, the safe choice that never disappoints. There's nothing flashy about you, and that's exactly the point. Done properly, simple beats complicated every single time.",
     traits: ["Consistent", "Trustworthy", "Understated", "Quietly confident"],
@@ -212,6 +218,7 @@ const foods: Record<FoodKey, {
   bakkutteh: {
     name: "Bak Kut Teh",
     emoji: "🍲",
+    img: "/bakkuhteh-figurine.png",
     subtitle: "Warm, generous, better with people.",
     desc: "You're happiest when everyone's around the table, soup refilled, nobody in a rush to leave. You look after people without making a show of it, and you'd rather share a hearty meal with good company than eat the fanciest thing alone. Comfort and community over everything.",
     traits: ["Generous", "Nurturing", "Down-to-earth", "Warm"],
@@ -221,6 +228,7 @@ const foods: Record<FoodKey, {
   chillicrab: {
     name: "Chilli Crab",
     emoji: "🦀",
+    img: "/chillicrab-figurine.png",
     subtitle: "Bold, messy, unforgettable.",
     desc: "You go all in. You're the one people remember, a bit loud, a bit extra, completely unbothered about it. Life's too short to play it safe or stay clean. You'd rather make a mess and a memory.",
     traits: ["Bold", "Adventurous", "Expressive", "Fearless"],
@@ -230,6 +238,7 @@ const foods: Record<FoodKey, {
   kayatoast: {
     name: "Kaya Toast",
     emoji: "🍞",
+    img: "/kayatoast-figurine.png",
     subtitle: "Nostalgic, gentle, quietly comforting.",
     desc: "You move at your own pace, and you're not sorry about it. You find joy in small familiar things, a slow morning, a good coffee, a moment that isn't rushed. You're the calm in everyone else's chaos.",
     traits: ["Nostalgic", "Easy-going", "Thoughtful", "Calm"],
@@ -390,10 +399,21 @@ export default function LocalFoodQuizPage() {
               <h1 className="serif text-[clamp(2.4rem,6vw,4rem)] leading-[1.15] text-[#0f172a] mb-6">
                 Which Singaporean<br /><em>local food are you?</em>
               </h1>
-              <p className="text-[#9a9490] text-base font-light leading-relaxed mb-10 max-w-sm mx-auto">
+              <p className="text-[#9a9490] text-base font-light leading-relaxed mb-8 max-w-sm mx-auto">
                 10 questions. No wrong answers.<br />
                 Chicken rice or chilli crab? Let&apos;s find out.
               </p>
+
+              <div className="flex items-center justify-center gap-3 mb-10">
+                {(Object.keys(foods) as FoodKey[]).map((key) => (
+                  <Image key={key} src={foods[key].img} alt={foods[key].name}
+                    width={FIGURINE_SIZE} height={FIGURINE_SIZE}
+                    sizes="(min-width: 640px) 80px, 64px"
+                    loading="eager"
+                    className="w-16 h-16 sm:w-20 sm:h-20 object-contain" />
+                ))}
+              </div>
+
               <button onClick={startQuiz}
                 className="inline-flex items-center gap-3 bg-[#0f172a] text-[#FAF8F5] px-8 py-4 text-sm tracking-[0.12em] uppercase hover:bg-[#1e293b] transition-colors duration-300 cursor-pointer">
                 Begin
@@ -495,7 +515,11 @@ export default function LocalFoodQuizPage() {
               <p className="text-xs tracking-[0.25em] text-[#c8a96e] uppercase mb-6">You are</p>
 
               <div className="mb-10">
-                <div className="text-[clamp(3.5rem,10vw,5.5rem)] leading-none mb-4">{f.emoji}</div>
+                <Image src={f.img} alt={`${f.name} figurine`}
+                  width={FIGURINE_SIZE} height={FIGURINE_SIZE}
+                  sizes="(min-width: 640px) 256px, 224px"
+                  loading="eager" fetchPriority="high"
+                  className="w-56 h-56 sm:w-64 sm:h-64 object-contain mb-4" />
                 <h2 className="serif text-[clamp(2rem,5vw,3.5rem)] leading-[1.1] text-[#0f172a] mb-3">
                   {f.name}
                 </h2>
