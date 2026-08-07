@@ -95,95 +95,101 @@ function CountryPicker({ value, onChange }: { value: string; onChange: (code: st
   );
 }
 
+/**
+ * Every option has to answer the question that was actually asked, and the four
+ * options in a question must not overlap. Order is fixed: A is Chicken Rice
+ * (standards), B is Bak Kut Teh (people), C is Chilli Crab (bold), D is Kaya
+ * Toast (unhurried), matching letterToFood below.
+ */
 const quizData = [
   {
     q: "It's your day off. What's the plan?",
     opts: [
-      "Same kopitiam, same order, same uncle",
-      "Whatever my friends are doing, I'm in",
-      "Something new I saw online last night",
-      "Nothing planned. Whatever feels right",
+      "Same place I always go. It has never let me down",
+      "Get everyone together for a proper meal",
+      "That new spot I saw online last night",
+      "No plan. I'll see how the day goes",
     ],
   },
   {
-    q: "How do you handle spicy food?",
+    q: "Chilli. How do you take it?",
     opts: [
-      "Chilli on the side, thank you",
-      "A bit of kick makes everything better",
-      "The spicier the better, I need to sweat",
-      "I'd rather have something sweet",
+      "On the side, so I decide how much",
+      "However the rest of the table is having it",
+      "Extra. I want to feel it",
+      "None for me. Something sweet instead",
     ],
   },
   {
     q: "Your friends would describe you as...",
     opts: [
-      "Dependable. Always there",
-      "The one who brings everyone together",
-      "Bold. A bit extra sometimes",
-      "Warm. Easy to be around",
+      "The one with standards",
+      "The one who looks after everybody",
+      "The one who turns dinner into a night out",
+      "The one who is never in a hurry",
     ],
   },
   {
-    q: "How do you feel about queueing 45 minutes for food?",
+    q: "There's a 45 minute queue for the best plate in town. You...",
     opts: [
-      "If it's the good stall, sure",
-      "Only if I've got company",
-      "Yes, and I'm posting about it",
-      "Absolutely not. Life's too short",
+      "Queue. Anything good is worth the wait",
+      "Queue, as long as someone waits with me",
+      "Queue, and film the whole thing",
+      "Skip it. The stall next door is fine",
     ],
   },
   {
-    q: "Pick a hawker centre vibe.",
+    q: "Pick your spot at the hawker centre.",
     opts: [
-      "Quiet corner, aircon, no rush",
-      "Packed table, everyone talking over each other",
-      "Late night, supper crowd, buzzing",
-      "Morning light, newspaper, unhurried",
+      "Right in front of the stall I trust",
+      "Big table, everyone squeezed in together",
+      "Supper crowd at 2am, still buzzing",
+      "Corner table, morning light, kopi and a paper",
     ],
   },
   {
     q: "What's your role in the group chat?",
     opts: [
       "The one who actually books the table",
-      "The one replying to everything",
-      "The one suggesting the wildest ideas",
-      "The one who reads but rarely replies",
+      "The one making sure nobody is left out",
+      "The one sending the wildest suggestions",
+      "The one who reads everything and replies later",
     ],
   },
   {
-    q: "How do you eat when you're stressed?",
+    q: "You've had a rough week. What do you eat?",
     opts: [
-      "Comfort food. Same thing I always get",
-      "Big meal with people, shared plates",
-      "Something loud and messy",
-      "Something small and sweet",
+      "My usual order. It always works",
+      "Dinner with people. I don't want to eat alone",
+      "Something huge, loud and messy",
+      "Something sweet, eaten slowly",
     ],
   },
   {
     q: "What matters most in a meal?",
     opts: [
-      "It's done properly. No shortcuts",
-      "Enough to share, nobody goes hungry",
-      "It surprises me",
-      "It reminds me of something",
+      "That it's done properly",
+      "That there's enough for everyone",
+      "That it's something I've never tried",
+      "That it reminds me of something",
     ],
   },
   {
     q: "Someone asks where to eat. You say...",
     opts: [
-      "I know a place. Trust me",
-      "Let's go where everyone can find something",
-      "There's this new spot, hear me out",
-      "Anywhere. I'm not fussy",
+      "I know the place. Trust me",
+      "Somewhere everyone will be happy",
+      "Let's try somewhere none of us have been",
+      "You pick. I'm easy",
     ],
   },
   {
-    q: "Sunday morning, you're...",
+    q: "The bill arrives. What happens?",
     opts: [
-      "Up early, same routine as always",
-      "Brunch with the family",
-      "Recovering from last night",
-      "Slow coffee, no agenda",
+      "Already worked out. Here's what each of us owes",
+      "I'll get this one",
+      "I'll pay if everyone stays for round two",
+      "Just tell me my share",
     ],
   },
 ];
@@ -202,7 +208,8 @@ const foods: Record<FoodKey, {
   subtitle: string;
   desc: string;
   traits: string[];
-  pairsWith: string;
+  pairsWith: FoodKey;
+  pairsWithReason: string;
   moneyTie: string;
 }> = {
   chickenrice: {
@@ -212,7 +219,8 @@ const foods: Record<FoodKey, {
     subtitle: "Reliable, timeless, quietly excellent.",
     desc: "You don't need to shout to be the best. You're the one everyone can count on, the safe choice that never disappoints. There's nothing flashy about you, and that's exactly the point. Done properly, simple beats complicated every single time.",
     traits: ["Consistent", "Trustworthy", "Understated", "Quietly confident"],
-    pairsWith: "Bak Kut Teh — they bring the warmth, you bring the standard.",
+    pairsWith: "bakkutteh",
+    pairsWithReason: "They bring the warmth, you bring the standard.",
     moneyTie: "You likely value stability and doing things properly. Steady beats flashy.",
   },
   bakkutteh: {
@@ -221,8 +229,9 @@ const foods: Record<FoodKey, {
     img: "/bakkuhteh-figurine.png",
     subtitle: "Warm, generous, better with people.",
     desc: "You're happiest when everyone's around the table, soup refilled, nobody in a rush to leave. You look after people without making a show of it, and you'd rather share a hearty meal with good company than eat the fanciest thing alone. Comfort and community over everything.",
-    traits: ["Generous", "Nurturing", "Down-to-earth", "Warm"],
-    pairsWith: "Chicken Rice — you look after everyone, they keep it grounded.",
+    traits: ["Generous", "Nurturing", "Down to earth", "Warm"],
+    pairsWith: "chickenrice",
+    pairsWithReason: "You look after everyone, they keep it grounded.",
     moneyTie: "You probably spend on people and experiences. Money is for sharing.",
   },
   chillicrab: {
@@ -232,7 +241,8 @@ const foods: Record<FoodKey, {
     subtitle: "Bold, messy, unforgettable.",
     desc: "You go all in. You're the one people remember, a bit loud, a bit extra, completely unbothered about it. Life's too short to play it safe or stay clean. You'd rather make a mess and a memory.",
     traits: ["Bold", "Adventurous", "Expressive", "Fearless"],
-    pairsWith: "Kaya Toast — you burn bright, they keep you steady.",
+    pairsWith: "kayatoast",
+    pairsWithReason: "You burn bright, they keep you steady.",
     moneyTie: "You likely chase opportunity and growth. Just watch the impulse spending.",
   },
   kayatoast: {
@@ -241,8 +251,9 @@ const foods: Record<FoodKey, {
     img: "/kayatoast-figurine.png",
     subtitle: "Nostalgic, gentle, quietly comforting.",
     desc: "You move at your own pace, and you're not sorry about it. You find joy in small familiar things, a slow morning, a good coffee, a moment that isn't rushed. You're the calm in everyone else's chaos.",
-    traits: ["Nostalgic", "Easy-going", "Thoughtful", "Calm"],
-    pairsWith: "Chilli Crab — they pull you out, you slow them down.",
+    traits: ["Nostalgic", "Easygoing", "Thoughtful", "Calm"],
+    pairsWith: "chillicrab",
+    pairsWithReason: "They pull you out, you slow them down.",
     moneyTie: "You may avoid financial stress by not thinking about it. A little planning goes far.",
   },
 };
@@ -543,7 +554,16 @@ export default function LocalFoodQuizPage() {
                 </div>
                 <div className="border border-[#e8e4df] p-5">
                   <p className="text-[10px] tracking-[0.2em] uppercase text-[#9a9490] mb-3">You pair well with</p>
-                  <p className="text-sm text-[#4a4540] font-light leading-relaxed">{f.pairsWith}</p>
+                  {/* Stacks on mobile: the two-column grid leaves this box too
+                      narrow to sit the dish name beside the figurine. */}
+                  <div className="flex flex-col items-start gap-2 mb-3 sm:flex-row sm:items-center sm:gap-3">
+                    <Image src={foods[f.pairsWith].img} alt={foods[f.pairsWith].name}
+                      width={FIGURINE_SIZE} height={FIGURINE_SIZE}
+                      sizes="56px" loading="eager"
+                      className="w-14 h-14 object-contain shrink-0" />
+                    <p className="serif text-lg leading-tight text-[#0f172a] min-w-0">{foods[f.pairsWith].name}</p>
+                  </div>
+                  <p className="text-sm text-[#4a4540] font-light leading-relaxed">{f.pairsWithReason}</p>
                 </div>
               </div>
 
