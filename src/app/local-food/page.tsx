@@ -211,6 +211,11 @@ const foods: Record<FoodKey, {
   pairsWith: FoodKey;
   pairsWithReason: string;
   moneyTie: string;
+  /* Full report teaser. Only the first line of each column is legible; the
+     rest is blurred until a specialist follows up. */
+  strengths: string[];
+  blindSpots: string[];
+  moneyHabits: string[];
 }> = {
   chickenrice: {
     name: "Chicken Rice",
@@ -222,6 +227,9 @@ const foods: Record<FoodKey, {
     pairsWith: "bakkutteh",
     pairsWithReason: "They bring the warmth, you bring the standard.",
     moneyTie: "You likely value stability and doing things properly. Steady beats flashy.",
+    strengths: ["Consistent when it counts", "People rely on your judgement", "You finish what you start"],
+    blindSpots: ["You stick with what works for too long", "Slow to ask anyone for help", "Can come across as inflexible"],
+    moneyHabits: ["You save without being told", "Safe appeals more than fast", "Caution may be costing you growth"],
   },
   bakkutteh: {
     name: "Bak Kut Teh",
@@ -233,6 +241,9 @@ const foods: Record<FoodKey, {
     pairsWith: "chickenrice",
     pairsWithReason: "You look after everyone, they keep it grounded.",
     moneyTie: "You probably spend on people and experiences. Money is for sharing.",
+    strengths: ["You make people feel looked after", "Trust comes to you quickly", "You hold the group together"],
+    blindSpots: ["You put yourself last", "Saying no is hard", "You avoid the awkward conversation"],
+    moneyHabits: ["You spend freely on other people", "Always the one who gets the bill", "Your own goals keep getting pushed back"],
   },
   chillicrab: {
     name: "Chilli Crab",
@@ -244,6 +255,9 @@ const foods: Record<FoodKey, {
     pairsWith: "kayatoast",
     pairsWithReason: "You burn bright, they keep you steady.",
     moneyTie: "You likely chase opportunity and growth. Just watch the impulse spending.",
+    strengths: ["You move fast on an opportunity", "Comfortable being seen", "You bring the energy"],
+    blindSpots: ["You decide before checking", "Maintenance bores you", "You overcommit on impulse"],
+    moneyHabits: ["You are willing to take a risk", "You buy in the moment", "The small leaks go unnoticed"],
   },
   kayatoast: {
     name: "Kaya Toast",
@@ -255,6 +269,9 @@ const foods: Record<FoodKey, {
     pairsWith: "chillicrab",
     pairsWithReason: "They pull you out, you slow them down.",
     moneyTie: "You may avoid financial stress by not thinking about it. A little planning goes far.",
+    strengths: ["Calm when everyone else panics", "Easy to be around", "You notice what actually matters"],
+    blindSpots: ["Decisions get put off", "You would rather not think about money", "Without a deadline you drift"],
+    moneyHabits: ["You spend modestly", "There is no fixed plan yet", "Waiting has cost you opportunities"],
   },
 };
 
@@ -567,9 +584,37 @@ export default function LocalFoodQuizPage() {
                 </div>
               </div>
 
-              <div className="border-l-2 border-[#c8a96e] pl-5 mb-10">
+              <div className="border-l-2 border-[#c8a96e] pl-5 mb-8">
                 <p className="text-[10px] tracking-[0.2em] text-[#c8a96e] uppercase mb-2">And with money?</p>
                 <p className="text-sm text-[#4a4540] font-light leading-relaxed">{f.moneyTie}</p>
+              </div>
+
+              {/* Full report teaser: first line of each column reads, the rest
+                  is blurred behind a fade to the page background. */}
+              <div className="relative mb-10 border border-[#e8e4df] overflow-hidden">
+                {/* Keep the bottom padding on both breakpoints: a bare pb-* would
+                    lose to sm:p-* inside its media query, collapsing the box to
+                    less than the fade's height. */}
+                <div className="grid grid-cols-3 gap-4 sm:gap-6 p-5 pb-28 sm:p-6 sm:pb-28 pointer-events-none select-none">
+                  {[
+                    { label: "Strengths", items: f.strengths },
+                    { label: "Blind spots", items: f.blindSpots },
+                    { label: "Money habits", items: f.moneyHabits },
+                  ].map(col => (
+                    <div key={col.label}>
+                      <p className="text-[10px] tracking-[0.2em] uppercase text-[#9a9490] mb-3">{col.label}</p>
+                      {col.items.map((item, i) => (
+                        <p key={item} className={`text-xs text-[#4a4540] font-light mb-2 leading-snug ${i >= 1 ? "blur-sm select-none" : ""}`}>{item}</p>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#FAF8F5] via-[#FAF8F5]/90 to-transparent flex items-end justify-center pb-6">
+                  <div className="text-center px-4">
+                    <p className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase mb-2">Full report</p>
+                    <p className="serif text-base text-[#0f172a] leading-snug">Our specialist will reach out<br />with your detailed breakdown.</p>
+                  </div>
+                </div>
               </div>
 
               <div className="bg-[#0f172a] px-8 py-10 text-center mb-8">
