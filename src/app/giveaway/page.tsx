@@ -31,6 +31,8 @@ const COUNTRY_CODES = [
 
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyaBDJ8He8DH-jDQl0kDFa3sNYmYJ8_gFj2MA-ZDmh0sg9VvlehpP4Ti7LZpksq1lOR5w/exec";
 const DEADLINE = new Date("2026-08-31T23:59:00+08:00");
+// Strength of the purple lens overlay at the "Sunny" end of the slider.
+const MAX_LENS_TINT = 0.68;
 
 function CountryPicker({ value, onChange }: { value: string; onChange: (code: string) => void }) {
   const [open, setOpen] = useState(false);
@@ -247,7 +249,7 @@ export default function GiveawayPage() {
           <img src="/sunglasses-clear.png" alt="Sporting Sunglasses" className="w-full h-auto object-contain"/>
           <img src="/sunglasses.png" alt="" aria-hidden="true"
             className="absolute inset-0 w-full h-auto object-contain"
-            style={{ opacity: lensTint / 100 }}/>
+            style={{ opacity: (lensTint / 100) * MAX_LENS_TINT }}/>
           {/* Desktop/tablet: callouts on the photo, circle touching the lens */}
           {[
             { top: "34%", left: "37%", side: "left", title: "Impact Resistant", desc: "Shatterproof polycarbonate lens" },
