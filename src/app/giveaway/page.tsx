@@ -386,7 +386,7 @@ export default function GiveawayPage() {
                 onChange={e => setPhone(e.target.value.replace(/\D/g, ""))}
                 placeholder={countryCode === "+65" ? "9123 4567" : "Phone number"}
                 maxLength={countryCode === "+65" ? 8 : 12}
-                inputMode="numeric"
+                inputMode="numeric" required
                 className="bg-transparent text-[#0f172a] text-sm font-light placeholder:text-[#c0bbb5] focus:outline-none flex-1 min-w-0"/>
             </div>
           </div>
@@ -479,6 +479,7 @@ export default function GiveawayPage() {
 
             <label className="flex items-start gap-3 mt-4 cursor-pointer">
               <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)}
+                required
                 className="mt-0.5 accent-[#0f172a] shrink-0"/>
               <span className="text-[11px] text-[#9a9490] font-light leading-relaxed">
                 I have read and agree to the above terms and consent to InnerMe collecting and using my personal data in accordance with the PDPA.
