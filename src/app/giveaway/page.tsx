@@ -120,6 +120,7 @@ export default function GiveawayPage() {
   const [countryCode, setCountryCode] = useState("+65");
   const [phone, setPhone] = useState("");
   const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
   const [residency, setResidency] = useState("");
   const [savingsGoal, setSavingsGoal] = useState("");
   const [financialGoals, setFinancialGoals] = useState<string[]>([]);
@@ -152,6 +153,11 @@ export default function GiveawayPage() {
     if (!name.trim()) { setPhoneError("Please enter your name."); return; }
     const err = validatePhone(countryCode, phone);
     if (err) { setPhoneError(err); return; }
+    if (!age.trim()) { setPhoneError("Please enter your age."); return; }
+    if (!gender) { setPhoneError("Please select your gender."); return; }
+    if (!residency) { setPhoneError("Please select your residency status."); return; }
+    if (!savingsGoal) { setPhoneError("Please select your savings goal."); return; }
+    if (financialGoals.length === 0) { setPhoneError("Please select at least one financial goal."); return; }
     if (!agreed) { setPhoneError("Please agree to the terms before submitting."); return; }
     setPhoneError("");
     setLoading(true);
@@ -163,6 +169,7 @@ export default function GiveawayPage() {
           name,
           phone: `${countryCode.replace(/^\+/, "")} ${phone}`,
           age,
+          gender,
           residency,
           savings_goal_2026: savingsGoal,
           financial_goals: financialGoals.join(", "),
@@ -388,14 +395,29 @@ export default function GiveawayPage() {
           <div className="flex flex-col gap-1.5">
             <label className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase">Age</label>
             <input type="number" value={age} onChange={e => setAge(e.target.value)}
-              placeholder="e.g. 28" min="16" max="99"
+              placeholder="e.g. 28" min="16" max="99" required
               className="bg-transparent border-b border-[#e8e4df] pb-3 text-[#0f172a] text-sm font-light placeholder:text-[#c0bbb5] focus:outline-none focus:border-[#0f172a] transition-colors duration-200"/>
+          </div>
+
+          {/* Gender */}
+          <div className="flex flex-col gap-3">
+            <label className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase">Gender</label>
+            <div className="flex flex-col gap-2">
+              {["Female", "Male", "Prefer not to say"].map(opt => (
+                <label key={opt} className="flex items-center gap-3 cursor-pointer">
+                  <input type="radio" name="gender" value={opt} checked={gender === opt} onChange={() => setGender(opt)}
+                    required
+                    className="accent-[#0f172a] shrink-0"/>
+                  <span className="text-sm text-[#0f172a] font-light">{opt}</span>
+                </label>
+              ))}
+            </div>
           </div>
 
           {/* Residency */}
           <div className="flex flex-col gap-1.5">
             <label className="text-[10px] tracking-[0.2em] text-[#9a9490] uppercase">Residency</label>
-            <select value={residency} onChange={e => setResidency(e.target.value)}
+            <select value={residency} onChange={e => setResidency(e.target.value)} required
               className="bg-transparent border-b border-[#e8e4df] pb-3 text-[#0f172a] text-sm font-light focus:outline-none focus:border-[#0f172a] transition-colors duration-200 appearance-none cursor-pointer">
               <option value="" disabled>Select your residency status</option>
               <option value="Singapore Citizen">Singapore Citizen</option>
@@ -414,6 +436,7 @@ export default function GiveawayPage() {
               {["Less than S$500/month", "S$500 to S$1,000/month", "More than S$1,000/month"].map(opt => (
                 <label key={opt} className="flex items-center gap-3 cursor-pointer">
                   <input type="radio" name="savingsGoal" value={opt} checked={savingsGoal === opt} onChange={() => setSavingsGoal(opt)}
+                    required
                     className="accent-[#0f172a] shrink-0"/>
                   <span className="text-sm text-[#0f172a] font-light">{opt}</span>
                 </label>
