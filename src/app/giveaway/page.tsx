@@ -386,6 +386,8 @@ export default function GiveawayPage() {
                 onChange={e => setPhone(e.target.value.replace(/\D/g, ""))}
                 placeholder={countryCode === "+65" ? "9123 4567" : "Phone number"}
                 maxLength={countryCode === "+65" ? 8 : 12}
+                pattern={countryCode === "+65" ? "[89][0-9]{7}" : undefined}
+                title={countryCode === "+65" ? "Enter a valid 8-digit SG number starting with 8 or 9." : undefined}
                 inputMode="numeric" required
                 className="bg-transparent text-[#0f172a] text-sm font-light placeholder:text-[#c0bbb5] focus:outline-none flex-1 min-w-0"/>
             </div>
