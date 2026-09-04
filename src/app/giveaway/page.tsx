@@ -30,7 +30,7 @@ const COUNTRY_CODES = [
 ];
 
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyaBDJ8He8DH-jDQl0kDFa3sNYmYJ8_gFj2MA-ZDmh0sg9VvlehpP4Ti7LZpksq1lOR5w/exec";
-const DEADLINE = new Date("2026-08-31T23:59:00+08:00");
+const DEADLINE = new Date("2026-09-30T23:59:00+08:00");
 // Strength of the purple lens overlay at the "Sunny" end of the slider.
 const MAX_LENS_TINT = 0.68;
 
